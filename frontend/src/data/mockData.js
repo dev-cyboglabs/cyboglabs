@@ -95,7 +95,7 @@ export const projects = [
     tagline: "Virtual Driving Simulation",
     description: "A virtual driving and simulation platform created to evaluate, train, and validate vehicle interaction scenarios.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1449965408869-ebd3fee20861?w=800&auto=format&fit=crop&q=60"
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=60"
   },
   {
     id: 7,
