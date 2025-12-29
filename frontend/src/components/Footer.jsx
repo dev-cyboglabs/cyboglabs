@@ -13,15 +13,20 @@ const Footer = () => {
       { name: 'Blog', path: '/blog' },
       { name: 'Contact', path: '/#contact' },
     ],
+    careers: [
+      { name: 'Full-time Careers', path: '/careers' },
+      { name: 'Internships', path: '/internships' },
+      { name: 'Events & News', path: '/events-news' },
+    ],
+    services: [
+      { name: 'Product-Driven R&D', path: '/#about' },
+      { name: 'AI & ML Systems', path: '/#about' },
+      { name: 'Hardware-Software Co-Dev', path: '/#about' },
+      { name: 'Technology Problem Solving', path: '/#about' },
+    ],
     legal: [
       { name: 'Terms & Conditions', path: '/terms' },
       { name: 'Privacy Policy', path: '/privacy' },
-    ],
-    services: [
-      { name: 'Applied Research', path: '/#about' },
-      { name: 'Experimental Development', path: '/#about' },
-      { name: 'Reverse Engineering', path: '/#about' },
-      { name: 'Tech Challenge Solving', path: '/#about' },
     ],
   };
 
