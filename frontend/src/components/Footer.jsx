@@ -41,7 +41,7 @@ const Footer = () => {
       />
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-flex items-center space-x-2 group mb-6">
@@ -51,7 +51,7 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-neutral-400 text-sm leading-relaxed mb-6">
-              {companyInfo.about.slice(0, 150)}...
+              {companyInfo.about.slice(0, 120)}...
             </p>
             <div className="space-y-3">
               <a
@@ -94,6 +94,29 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    className="text-neutral-400 hover:text-white transition-colors duration-300 text-sm inline-flex items-center group"
+                  >
+                    {link.name}
+                    <ArrowUpRight
+                      size={14}
+                      className="ml-1 opacity-0 group-hover:opacity-100 transform -translate-x-1 group-hover:translate-x-0 transition-all duration-300"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Careers & Events Links */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-300 mb-6">
+              Careers & Events
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.careers.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
