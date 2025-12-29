@@ -277,3 +277,194 @@ export const privacyPolicy = {
     }
   ]
 };
+
+export const careers = [
+  {
+    id: 1,
+    title: "DevOps Engineer",
+    department: "Infrastructure & Operations",
+    location: "Hybrid / Remote",
+    type: "Full-time",
+    experience: "3-6 years",
+    salary: "Competitive",
+    posted: "July 2025",
+    shortDescription: "Join our infrastructure team to build and maintain scalable, reliable, and secure CI/CD pipelines and cloud infrastructure.",
+    description: `We are seeking an experienced DevOps Engineer to join our Infrastructure & Operations team. You will be responsible for designing, implementing, and maintaining our continuous integration and continuous deployment (CI/CD) pipelines, cloud infrastructure, and automation frameworks.
+
+As a DevOps Engineer at CYBOGLABS, you will work closely with our development, QA, and security teams to ensure seamless software delivery while maintaining high availability and performance standards across all our products.`,
+    responsibilities: [
+      "Design, implement, and maintain CI/CD pipelines using Jenkins, GitLab CI, GitHub Actions, or similar tools",
+      "Manage and optimize cloud infrastructure on AWS, GCP, or Azure using Infrastructure as Code (IaC) tools like Terraform, CloudFormation, or Pulumi",
+      "Implement and maintain containerization strategies using Docker, Kubernetes (K8s), and Helm charts",
+      "Set up and manage monitoring, logging, and alerting systems using Prometheus, Grafana, ELK Stack, or Datadog",
+      "Automate infrastructure provisioning, configuration management, and deployment processes using Ansible, Chef, or Puppet",
+      "Implement security best practices including secrets management, vulnerability scanning, and compliance automation",
+      "Optimize system performance, scalability, and cost efficiency across cloud environments",
+      "Collaborate with development teams to improve application deployment processes and reduce time-to-production",
+      "Maintain documentation for infrastructure architecture, runbooks, and operational procedures",
+      "Participate in on-call rotation and incident response activities"
+    ],
+    requirements: [
+      "Bachelor's degree in Computer Science, Information Technology, or related field",
+      "3-6 years of hands-on experience in DevOps, SRE, or Platform Engineering roles",
+      "Strong proficiency in Linux/Unix system administration and shell scripting (Bash, Python)",
+      "Experience with containerization technologies: Docker, Kubernetes, container registries",
+      "Hands-on experience with at least one major cloud platform (AWS, GCP, Azure)",
+      "Proficiency in Infrastructure as Code tools: Terraform, CloudFormation, or Pulumi",
+      "Experience with CI/CD tools: Jenkins, GitLab CI, GitHub Actions, ArgoCD",
+      "Knowledge of monitoring and observability tools: Prometheus, Grafana, ELK, Jaeger",
+      "Understanding of networking concepts: TCP/IP, DNS, load balancing, CDN, VPN",
+      "Familiarity with security practices: IAM, secrets management (Vault), SSL/TLS"
+    ],
+    niceToHave: [
+      "Kubernetes certifications (CKA, CKAD, CKS)",
+      "AWS/GCP/Azure professional certifications",
+      "Experience with GitOps methodologies and tools (ArgoCD, Flux)",
+      "Knowledge of service mesh technologies (Istio, Linkerd)",
+      "Experience with chaos engineering practices",
+      "Familiarity with FinOps and cloud cost optimization"
+    ],
+    techStack: ["AWS", "Kubernetes", "Terraform", "Docker", "Jenkins", "Prometheus", "Grafana", "Python", "Ansible", "GitLab CI"]
+  },
+  {
+    id: 2,
+    title: "AI/ML Architect",
+    department: "Artificial Intelligence",
+    location: "Hybrid / Remote",
+    type: "Full-time",
+    experience: "5-10 years",
+    salary: "Competitive",
+    posted: "July 2025",
+    shortDescription: "Lead the design and implementation of cutting-edge AI/ML systems that power our intelligent products and platforms.",
+    description: `We are looking for a visionary AI/ML Architect to lead the design and implementation of machine learning systems across our product portfolio. You will be responsible for defining the AI strategy, architecting scalable ML pipelines, and ensuring our models deliver real-world impact.
+
+At CYBOGLABS, you will work on diverse AI applications including computer vision, natural language processing, predictive analytics, and intelligent automation systems. This role requires deep technical expertise combined with the ability to translate complex business requirements into robust AI solutions.`,
+    responsibilities: [
+      "Define and execute the AI/ML architecture strategy aligned with business objectives and product roadmap",
+      "Design end-to-end ML pipelines including data ingestion, feature engineering, model training, validation, and deployment",
+      "Architect scalable MLOps infrastructure using tools like MLflow, Kubeflow, or SageMaker",
+      "Lead the development of deep learning models using PyTorch, TensorFlow, or JAX for computer vision and NLP applications",
+      "Implement and optimize transformer-based architectures (BERT, GPT, Vision Transformers) for production systems",
+      "Design distributed training strategies for large-scale models using techniques like data parallelism and model parallelism",
+      "Establish best practices for model versioning, A/B testing, monitoring, and continuous retraining",
+      "Evaluate and integrate state-of-the-art research papers and open-source models into production systems",
+      "Mentor and guide ML engineers, conduct code reviews, and drive technical excellence",
+      "Collaborate with product managers and stakeholders to define AI capabilities and success metrics"
+    ],
+    requirements: [
+      "Master's or PhD in Computer Science, Machine Learning, Statistics, or related quantitative field",
+      "5-10 years of experience in machine learning with at least 3 years in architectural/lead roles",
+      "Deep expertise in deep learning frameworks: PyTorch, TensorFlow, JAX",
+      "Strong foundation in ML algorithms: supervised/unsupervised learning, reinforcement learning, optimization",
+      "Experience with NLP technologies: transformers, LLMs, embeddings, RAG architectures",
+      "Proficiency in computer vision: CNNs, object detection (YOLO, Faster R-CNN), image segmentation",
+      "Hands-on experience with MLOps platforms: MLflow, Kubeflow, SageMaker, Vertex AI",
+      "Strong programming skills in Python with expertise in NumPy, Pandas, Scikit-learn",
+      "Experience with distributed computing frameworks: Spark, Dask, Ray",
+      "Knowledge of cloud ML services: AWS SageMaker, GCP Vertex AI, Azure ML"
+    ],
+    niceToHave: [
+      "Published research papers in top-tier ML conferences (NeurIPS, ICML, CVPR, ACL)",
+      "Experience with generative AI: GANs, diffusion models, large language models",
+      "Knowledge of edge ML deployment: TensorRT, ONNX, TensorFlow Lite",
+      "Experience with graph neural networks and knowledge graphs",
+      "Familiarity with federated learning and privacy-preserving ML",
+      "Contributions to open-source ML projects"
+    ],
+    techStack: ["PyTorch", "TensorFlow", "Python", "Kubeflow", "MLflow", "Transformers", "CUDA", "AWS SageMaker", "Docker", "Kubernetes"]
+  },
+  {
+    id: 3,
+    title: "Cloud Architect",
+    department: "Cloud Infrastructure",
+    location: "Hybrid / Remote",
+    type: "Full-time",
+    experience: "6-10 years",
+    salary: "Competitive",
+    posted: "July 2025",
+    shortDescription: "Design and implement enterprise-grade cloud architectures that are secure, scalable, and cost-optimized.",
+    description: `We are seeking a seasoned Cloud Architect to design and implement enterprise-grade cloud solutions that power our products and services. You will be responsible for defining cloud strategy, designing multi-cloud architectures, and ensuring our infrastructure meets the highest standards of security, reliability, and performance.
+
+As a Cloud Architect at CYBOGLABS, you will work across multiple cloud platforms to build resilient, scalable systems that support our R&D initiatives and production workloads. This role requires deep expertise in cloud technologies combined with strong leadership and communication skills.`,
+    responsibilities: [
+      "Define and execute cloud architecture strategy across AWS, GCP, and Azure environments",
+      "Design highly available, fault-tolerant, and scalable cloud architectures using well-architected framework principles",
+      "Architect microservices-based applications using containers, Kubernetes, and serverless technologies",
+      "Implement cloud security architectures including identity management, network security, and data protection",
+      "Design data architectures leveraging cloud-native databases, data lakes, and analytics services",
+      "Develop disaster recovery and business continuity strategies with defined RPO/RTO objectives",
+      "Optimize cloud costs through reserved instances, spot instances, and architectural improvements",
+      "Create technical documentation, architecture diagrams, and design patterns for cloud solutions",
+      "Lead cloud migration initiatives including assessment, planning, and execution",
+      "Mentor engineering teams on cloud best practices and emerging technologies"
+    ],
+    requirements: [
+      "Bachelor's or Master's degree in Computer Science, Engineering, or related field",
+      "6-10 years of experience in cloud architecture and engineering roles",
+      "Expert-level knowledge of at least one major cloud platform (AWS, GCP, or Azure)",
+      "Strong experience with cloud-native architectures: microservices, containers, Kubernetes, serverless",
+      "Deep understanding of networking: VPC, subnets, load balancing, CDN, DNS, VPN, Direct Connect",
+      "Experience with Infrastructure as Code: Terraform, CloudFormation, Pulumi, ARM templates",
+      "Knowledge of cloud security: IAM, KMS, security groups, WAF, Shield, compliance frameworks",
+      "Experience with database technologies: RDS, DynamoDB, Cloud SQL, Cosmos DB, Redis, Elasticsearch",
+      "Understanding of event-driven architectures: Kafka, SQS, SNS, Pub/Sub, EventBridge",
+      "Strong communication skills with ability to present to executive stakeholders"
+    ],
+    niceToHave: [
+      "AWS Solutions Architect Professional or equivalent certifications",
+      "Multi-cloud architecture experience across AWS, GCP, and Azure",
+      "Experience with hybrid cloud and edge computing solutions",
+      "Knowledge of FinOps practices and cloud cost management tools",
+      "Experience with compliance frameworks: SOC2, HIPAA, GDPR, ISO 27001",
+      "Familiarity with cloud-native observability: distributed tracing, APM"
+    ],
+    techStack: ["AWS", "GCP", "Azure", "Kubernetes", "Terraform", "Docker", "Kafka", "PostgreSQL", "Redis", "CloudFormation"]
+  },
+  {
+    id: 4,
+    title: "Hardware & Embedded Systems Engineer",
+    department: "Hardware Engineering",
+    location: "On-site / Hybrid",
+    type: "Full-time",
+    experience: "4-8 years",
+    salary: "Competitive",
+    posted: "July 2025",
+    shortDescription: "Design and develop innovative hardware solutions and embedded systems for our cutting-edge IoT and automation products.",
+    description: `We are looking for a talented Hardware & Embedded Systems Engineer to join our Hardware Engineering team. You will be responsible for designing, developing, and testing embedded systems and hardware solutions that power our IoT devices, automation platforms, and intelligent products.
+
+At CYBOGLABS, you will work on the complete hardware development lifecycle from concept and schematic design to PCB layout, prototyping, and production. This role offers the opportunity to work on diverse projects including sensor systems, communication modules, and edge computing devices.`,
+    responsibilities: [
+      "Design embedded systems architecture including microcontroller/microprocessor selection and system integration",
+      "Develop firmware for ARM Cortex-M, ESP32, STM32, and other embedded platforms using C/C++",
+      "Create schematic designs and PCB layouts using Altium Designer, KiCad, or Eagle",
+      "Implement communication protocols: UART, SPI, I2C, CAN, Ethernet, Wi-Fi, BLE, LoRa, Zigbee",
+      "Design power management systems including battery management, voltage regulation, and low-power optimization",
+      "Develop real-time operating system (RTOS) based applications using FreeRTOS, Zephyr, or ThreadX",
+      "Integrate sensors, actuators, and peripheral devices with embedded systems",
+      "Perform hardware debugging using oscilloscopes, logic analyzers, spectrum analyzers, and JTAG debuggers",
+      "Design for manufacturability (DFM) and design for testability (DFT) considerations",
+      "Create technical documentation including specifications, schematics, and test procedures"
+    ],
+    requirements: [
+      "Bachelor's or Master's degree in Electrical Engineering, Electronics, or Computer Engineering",
+      "4-8 years of experience in embedded systems and hardware design",
+      "Strong proficiency in embedded C/C++ programming for resource-constrained systems",
+      "Experience with ARM Cortex-M microcontrollers (STM32, NXP, Nordic) and development tools",
+      "Hands-on experience with PCB design: schematic capture, layout, signal integrity, EMC considerations",
+      "Knowledge of communication protocols: UART, SPI, I2C, CAN bus, Modbus, MQTT",
+      "Experience with RTOS concepts: tasks, semaphores, queues, memory management",
+      "Proficiency with lab equipment: oscilloscopes, logic analyzers, multimeters, power supplies",
+      "Understanding of analog and digital circuit design principles",
+      "Experience with version control (Git) and embedded development workflows"
+    ],
+    niceToHave: [
+      "Experience with RF design and wireless protocols (BLE, Wi-Fi, LoRa, cellular)",
+      "Knowledge of FPGA development using Verilog or VHDL",
+      "Experience with Linux-based embedded systems (Yocto, Buildroot)",
+      "Familiarity with motor control and power electronics",
+      "Understanding of functional safety standards (IEC 61508, ISO 26262)",
+      "Experience with EMC testing and certification processes"
+    ],
+    techStack: ["C", "C++", "ARM Cortex-M", "STM32", "ESP32", "FreeRTOS", "Altium Designer", "Python", "I2C", "SPI", "BLE", "Wi-Fi"]
+  }
+];
