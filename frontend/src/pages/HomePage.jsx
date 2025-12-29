@@ -6,7 +6,6 @@ import AboutSection from '../components/AboutSection';
 import ProjectsSection from '../components/ProjectsSection';
 import BlogPreview from '../components/BlogPreview';
 import ContactSection from '../components/ContactSection';
-import FAQSection from '../components/FAQSection';
 import CybotChatbot from '../components/CybotChatbot';
 
 const HomePage = () => {
@@ -17,7 +16,6 @@ const HomePage = () => {
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
-        <FAQSection />
         <BlogPreview />
         <ContactSection />
       </main>
