@@ -4,6 +4,7 @@ import { ArrowLeft, Lock, Eye, Database, Shield, UserCheck } from 'lucide-react'
 import { privacyPolicy } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CybotChatbot from '../components/CybotChatbot';
 
 const PrivacyPage = () => {
   const icons = [Lock, Eye, Database, Shield, UserCheck, Eye, Database, Lock];
