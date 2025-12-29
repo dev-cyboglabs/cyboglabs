@@ -12,54 +12,122 @@ export const companyInfo = {
 export const specialties = [
   {
     id: 1,
-    title: "Applied Research",
-    description: "Exploring new frontiers to turn concepts into reality.",
+    title: "Product-Driven Engineering R&D",
+    description: "We conduct applied research and experimental development to create original, IP-led technology products.",
     icon: "FlaskConical"
   },
   {
     id: 2,
-    title: "Experimental Development",
-    description: "Engineering breakthrough solutions from the ground up.",
-    icon: "Cog"
+    title: "AI & Machine Learning Systems",
+    description: "We design and implement AI and ML models as core components of our products, focusing on real-world applicability, automation, and intelligent decision-making.",
+    icon: "Brain"
   },
   {
     id: 3,
-    title: "Reverse Engineering",
-    description: "Deconstructing, analyzing, and enhancing technologies.",
-    icon: "Undo2"
+    title: "Hardware–Software Co-Development",
+    description: "We build integrated systems where custom hardware, embedded firmware, and software platforms are developed together to solve complex operational challenges.",
+    icon: "Cpu"
   },
   {
     id: 4,
-    title: "Tech Challenge Solving",
-    description: "Cracking complex problems with disruptive innovation.",
+    title: "Technology Problem Solving",
+    description: "We take on difficult, unsolved engineering challenges and translate them into scalable, practical technology solutions through structured experimentation and iteration.",
     icon: "Lightbulb"
+  },
+  {
+    id: 5,
+    title: "Experimental Prototyping & Validation",
+    description: "We rapidly prototype, test, and refine concepts to validate feasibility, performance, and market relevance before moving toward productization.",
+    icon: "Cog"
+  },
+  {
+    id: 6,
+    title: "End-to-End Product Ownership",
+    description: "From concept and research to design, development, and IP creation, all core innovation is conceived and built in-house, with manufacturing executed through trusted partners.",
+    icon: "Rocket"
   }
 ];
 
 export const projects = [
   {
     id: 1,
-    name: "WONDS",
-    tagline: "Your Warranty Worries Sorted",
-    description: "One-stop solution for warranty tracking and hassle-free servicing.",
-    status: "Coming Soon",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60"
+    name: "SpotyTags",
+    tagline: "Hospitality Automation Platform",
+    description: "Hospitality-focused automation platform for intelligent tracking and billing of in-room consumables.",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=60"
   },
   {
     id: 2,
-    name: "PIXZEE.AI",
-    tagline: "Your Smart Garment Assistant",
-    description: "AI-powered garment analysis and styling recommendations.",
-    status: "Coming Soon",
+    name: "Pixzee.ai",
+    tagline: "AI-Driven Apparel Platform",
+    description: "An AI-driven apparel platform that blends personalization, automation, and digital intelligence into fashion retail.",
+    status: "Active",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=60"
   },
   {
     id: 3,
-    name: "BLOCKCHAIN",
-    tagline: "Blockchain-based Innovative Solutions",
-    description: "Blockchain based innovative solutions for real world challenges.",
-    status: "Coming Soon",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&auto=format&fit=crop&q=60"
+    name: "PixzeePod",
+    tagline: "AI-Powered Retail Assistant",
+    description: "An AI-powered retail assistant designed to enhance customer interaction and in-store decision support.",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&auto=format&fit=crop&q=60"
+  },
+  {
+    id: 4,
+    name: "Seabot.ai",
+    tagline: "Intelligent Marine Data Platform",
+    description: "An intelligent marine data platform built to enable real-time monitoring and insights in maritime environments.",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=60"
+  },
+  {
+    id: 5,
+    name: "Matrivis",
+    tagline: "Digital Warehouse Intelligence",
+    description: "A digital warehouse intelligence system designed for port and logistics operations to improve visibility and control.",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=60"
+  },
+  {
+    id: 6,
+    name: "TestRive",
+    tagline: "Virtual Driving Simulation",
+    description: "A virtual driving and simulation platform created to evaluate, train, and validate vehicle interaction scenarios.",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1449965408869-ebd3fee20861?w=800&auto=format&fit=crop&q=60"
+  },
+  {
+    id: 7,
+    name: "Lockfee",
+    tagline: "Automated Parking Compliance",
+    description: "An automated parking compliance solution that enables digital payment and controlled clamp release with minimal manual intervention.",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800&auto=format&fit=crop&q=60"
+  },
+  {
+    id: 8,
+    name: "SpotAxis",
+    tagline: "Smart Parking Assistance",
+    description: "A smart parking assistance platform focused on improving flow, compliance, and operational efficiency in managed parking environments.",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?w=800&auto=format&fit=crop&q=60"
+  },
+  {
+    id: 9,
+    name: "ZepTrack",
+    tagline: "Pharmacy Automation Platform",
+    description: "An automation platform designed to streamline pharmacy operations and inventory-driven workflows.",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&auto=format&fit=crop&q=60"
+  },
+  {
+    id: 10,
+    name: "WONDS",
+    tagline: "Digital Warranty Platform",
+    description: "A digital warranty and after-sales platform that simplifies product ownership and service access for end users.",
+    status: "Active",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop&q=60"
   }
 ];
 
@@ -209,12 +277,3 @@ export const privacyPolicy = {
     }
   ]
 };
-
-export const satelliteParts = [
-  { id: 'body', name: 'Main Body', offsetY: 0 },
-  { id: 'solar-left', name: 'Left Solar Panel', offsetY: 100 },
-  { id: 'solar-right', name: 'Right Solar Panel', offsetY: 200 },
-  { id: 'antenna', name: 'Communication Antenna', offsetY: 300 },
-  { id: 'dish', name: 'Satellite Dish', offsetY: 400 },
-  { id: 'thrusters', name: 'Thrusters', offsetY: 500 }
-];
