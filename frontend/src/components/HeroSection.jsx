@@ -97,7 +97,7 @@ const HeroSection = () => {
               {companyInfo.name}
             </h1>
             <p className="text-xl md:text-2xl lg:text-3xl text-neutral-500 mb-10">
-              Technology & Life
+              Engineering Tomorrow's Breakthroughs
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Link
