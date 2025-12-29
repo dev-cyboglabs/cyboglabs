@@ -101,3 +101,152 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Test the Cyboglabs website with the following changes: Homepage Hero Section (new tagline, engineering pencil sketch satellite animation, scroll to draft), FAQ Page (navigation, search, category filters, expandable items), Projects Section (Learn More buttons, popup modals), Footer (new tagline, FAQ link), and Global Chatbot (visibility across pages)"
+
+frontend:
+  - task: "Homepage Hero Section - New Tagline"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/HeroSection.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify new tagline 'Engineering Tomorrow's Breakthroughs' is displayed in hero section"
+
+  - task: "Homepage Hero Section - Engineering Pencil Sketch Satellite Animation"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/HeroSection.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify engineering pencil sketch satellite animation exists on right side with scroll-based drawing progress"
+
+  - task: "Homepage Hero Section - Scroll to Draft Animation"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/HeroSection.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify scroll animation shows % drafted and 'SCROLL TO DRAFT' text appears at bottom"
+
+  - task: "FAQ Page Navigation and Content"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/FAQPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify FAQ page loads at /faq with hero section showing 'Frequently Asked Questions'"
+
+  - task: "FAQ Page Search and Filter Functionality"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/FAQPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify search bar works and category filter buttons (All, General, Products, Careers, Services, Contact, Technology) function properly"
+
+  - task: "FAQ Page Expandable Items"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/FAQPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify FAQ items are expandable/collapsible and answers display correctly when clicked"
+
+  - task: "Projects Section Learn More Functionality"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/ProjectsSection.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify project cards display with 'Learn More' buttons and clicking opens popup modal"
+
+  - task: "Projects Section Modal Content"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/ProjectsSection.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify popup modal contains project image, name, tagline, Overview section, About section, Key Features, Get in Touch and Close buttons"
+
+  - task: "Footer New Tagline and FAQ Link"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/Footer.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify footer shows new tagline 'Engineering Tomorrow's Breakthroughs — Where Innovation Meets Excellence' and FAQ link exists in Legal section"
+
+  - task: "Global Chatbot Visibility"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/CybotChatbot.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        -working: "NA"
+        -agent: "testing"
+        -comment: "Need to verify CYBOT chatbot icon appears on homepage, /careers, /blog, and /faq pages"
+
+metadata:
+  created_by: "testing_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: true
+
+test_plan:
+  current_focus:
+    - "Homepage Hero Section - New Tagline"
+    - "Homepage Hero Section - Engineering Pencil Sketch Satellite Animation"
+    - "Homepage Hero Section - Scroll to Draft Animation"
+    - "FAQ Page Navigation and Content"
+    - "FAQ Page Search and Filter Functionality"
+    - "FAQ Page Expandable Items"
+    - "Projects Section Learn More Functionality"
+    - "Projects Section Modal Content"
+    - "Footer New Tagline and FAQ Link"
+    - "Global Chatbot Visibility"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "high_first"
+
+agent_communication:
+    -agent: "testing"
+    -message: "Starting comprehensive testing of Cyboglabs website changes. Will test all specified features including hero section updates, FAQ page functionality, projects section modals, footer changes, and global chatbot visibility across multiple pages."
