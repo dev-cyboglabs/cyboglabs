@@ -4,6 +4,7 @@ import { ArrowLeft, MapPin, Clock, Briefcase, CheckCircle, Send, X, Upload } fro
 import { careers } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CybotChatbot from '../components/CybotChatbot';
 
 const JobDetailPage = () => {
   const { id } = useParams();
