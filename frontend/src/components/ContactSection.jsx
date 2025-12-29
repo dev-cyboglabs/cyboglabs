@@ -44,7 +44,7 @@ const ContactSection = () => {
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
             Got a Project?
-            <span className="block text-neutral-400">Let's Talk</span>
+            <span className="block text-neutral-400">Let&apos;s Talk</span>
           </h2>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
             The FUTURE is calling! CYBOGLABS is answering!
@@ -56,11 +56,11 @@ const ContactSection = () => {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-6">
-                Let's create something extraordinary together
+                Let&apos;s create something extraordinary together
               </h3>
               <p className="text-neutral-600 leading-relaxed">
                 Whether you have a groundbreaking idea or a complex technical challenge,
-                we're here to help bring your vision to life. Our team of experts is ready
+                we&apos;re here to help bring your vision to life. Our team of experts is ready
                 to collaborate and innovate.
               </p>
             </div>
