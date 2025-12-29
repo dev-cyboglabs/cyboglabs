@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { companyInfo } from '../data/mockData';
 
 const HeroSection = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [drawProgress, setDrawProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const maxScroll = 500;
+      const maxScroll = 600;
       const progress = Math.min(scrollY / maxScroll, 1);
-      setScrollProgress(progress);
+      setDrawProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -26,66 +26,33 @@ const HeroSection = () => {
     }
   };
 
-  // Smooth easing function
-  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-
-  // Calculate part animation with staggered timing
-  const getPartStyle = (partIndex, totalParts, direction = 'down') => {
-    const staggerDelay = 0.12;
-    const partStart = partIndex * staggerDelay;
-    const partEnd = partStart + 0.5;
-    
-    let partProgress = 0;
-    if (scrollProgress > partStart) {
-      partProgress = Math.min((scrollProgress - partStart) / (partEnd - partStart), 1);
-    }
-    
-    const easedProgress = easeOutCubic(partProgress);
-    
-    let translateX = 0;
-    let translateY = 0;
-    const distance = 150;
-    
-    switch (direction) {
-      case 'down':
-        translateY = (1 - easedProgress) * -distance;
-        break;
-      case 'up':
-        translateY = (1 - easedProgress) * distance;
-        break;
-      case 'left':
-        translateX = (1 - easedProgress) * distance;
-        break;
-      case 'right':
-        translateX = (1 - easedProgress) * -distance;
-        break;
-      default:
-        translateY = (1 - easedProgress) * -distance;
-    }
-    
-    return {
-      transform: `translate(${translateX}px, ${translateY}px)`,
-      opacity: easedProgress,
-      transition: 'none',
-    };
+  // Calculate stroke dash offset for drawing animation
+  const getStrokeDashOffset = (pathLength, startPercent, endPercent) => {
+    const progress = Math.max(0, Math.min(1, (drawProgress - startPercent) / (endPercent - startPercent)));
+    return pathLength * (1 - progress);
   };
 
-  const isFullyAssembled = scrollProgress > 0.85;
+  const isComplete = drawProgress > 0.9;
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-neutral-50">
-      {/* Subtle Background Pattern */}
+      {/* Engineering Blueprint Grid Background */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `
-              linear-gradient(to right, #000 1px, transparent 1px),
-              linear-gradient(to bottom, #000 1px, transparent 1px)
+              linear-gradient(to right, #1a365d 1px, transparent 1px),
+              linear-gradient(to bottom, #1a365d 1px, transparent 1px)
             `,
-            backgroundSize: '50px 50px',
+            backgroundSize: '30px 30px',
           }}
         />
+        {/* Corner marks */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-l-2 border-t-2 border-neutral-300 opacity-40" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-r-2 border-t-2 border-neutral-300 opacity-40" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-l-2 border-b-2 border-neutral-300 opacity-40" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-r-2 border-b-2 border-neutral-300 opacity-40" />
       </div>
 
       {/* Content */}
@@ -116,169 +83,257 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Side - Satellite Assembly */}
+          {/* Right Side - Engineering Pencil Sketch Satellite */}
           <div className="lg:w-1/2 flex items-center justify-center">
-            <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px]">
+            <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px]">
               
-              {/* Main Satellite Body - comes from top */}
-              <div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-                style={getPartStyle(0, 7, 'down')}
+              {/* SVG Pencil Sketch Satellite */}
+              <svg
+                viewBox="0 0 400 400"
+                className="w-full h-full"
+                style={{ filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05))' }}
               >
-                <div className="relative">
-                  {/* Main chassis */}
-                  <div className="w-16 h-24 md:w-20 md:h-28 lg:w-24 lg:h-32 bg-gradient-to-b from-slate-200 via-slate-300 to-slate-400 rounded-md shadow-xl border border-slate-300">
-                    {/* Top sensor dome */}
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 bg-gradient-to-b from-slate-600 to-slate-800 rounded-full border-2 border-slate-500 shadow-lg">
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 animate-pulse" />
-                    </div>
-                    {/* Panel lines */}
-                    <div className="absolute top-8 left-2 right-2 h-px bg-slate-400" />
-                    <div className="absolute top-14 left-2 right-2 h-px bg-slate-400" />
-                    <div className="absolute top-20 left-2 right-2 h-px bg-slate-400" />
-                    {/* Status lights */}
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                      <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-                    </div>
-                  </div>
-                </div>
-              </div>
+                {/* Definitions for sketch effects */}
+                <defs>
+                  {/* Pencil texture filter */}
+                  <filter id="pencilTexture" x="-20%" y="-20%" width="140%" height="140%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G"/>
+                  </filter>
+                  
+                  {/* Gradient for dimension lines */}
+                  <linearGradient id="sketchGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#374151" stopOpacity="0.8"/>
+                    <stop offset="100%" stopColor="#6b7280" stopOpacity="0.6"/>
+                  </linearGradient>
+                </defs>
 
-              {/* Left Solar Panel - comes from left */}
-              <div
-                className="absolute left-4 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-0"
-                style={getPartStyle(1, 7, 'left')}
-              >
-                <div className="flex items-center">
-                  {/* Solar panel */}
-                  <div className="w-20 h-12 md:w-28 md:h-16 lg:w-32 lg:h-20 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 rounded shadow-lg border border-blue-600/50 relative overflow-hidden">
-                    {/* Solar cells grid */}
-                    <div className="absolute inset-1 grid grid-cols-6 grid-rows-4 gap-px">
-                      {[...Array(24)].map((_, i) => (
-                        <div key={i} className="bg-blue-600 border border-blue-500/30" />
-                      ))}
-                    </div>
-                    {/* Shine effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent" />
-                  </div>
+                {/* Main Satellite Body - Rectangle with sketch lines */}
+                <g className="satellite-body">
+                  {/* Body outline */}
+                  <rect
+                    x="165" y="140" width="70" height="120"
+                    fill="none"
+                    stroke="#374151"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeDasharray="500"
+                    strokeDashoffset={getStrokeDashOffset(500, 0, 0.15)}
+                    style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
+                  />
+                  {/* Cross-hatch shading lines */}
+                  {[0, 1, 2, 3, 4, 5].map((i) => (
+                    <line
+                      key={`hatch-${i}`}
+                      x1="170" y1={150 + i * 18}
+                      x2="230" y2={150 + i * 18}
+                      stroke="#9ca3af"
+                      strokeWidth="0.5"
+                      strokeDasharray="100"
+                      strokeDashoffset={getStrokeDashOffset(100, 0.1 + i * 0.02, 0.2 + i * 0.02)}
+                      style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
+                    />
+                  ))}
+                  {/* Panel detail lines */}
+                  <line x1="165" y1="175" x2="235" y2="175" stroke="#4b5563" strokeWidth="1.5"
+                    strokeDasharray="70" strokeDashoffset={getStrokeDashOffset(70, 0.12, 0.22)}
+                  />
+                  <line x1="165" y1="210" x2="235" y2="210" stroke="#4b5563" strokeWidth="1.5"
+                    strokeDasharray="70" strokeDashoffset={getStrokeDashOffset(70, 0.14, 0.24)}
+                  />
+                </g>
+
+                {/* Left Solar Panel */}
+                <g className="solar-panel-left">
+                  {/* Panel frame */}
+                  <rect
+                    x="30" y="165" width="120" height="70"
+                    fill="none"
+                    stroke="#374151"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeDasharray="380"
+                    strokeDashoffset={getStrokeDashOffset(380, 0.15, 0.35)}
+                    style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
+                  />
+                  {/* Solar cell grid - vertical lines */}
+                  {[0, 1, 2, 3, 4, 5].map((i) => (
+                    <line
+                      key={`solar-v-l-${i}`}
+                      x1={50 + i * 20} y1="170"
+                      x2={50 + i * 20} y2="230"
+                      stroke="#6b7280"
+                      strokeWidth="0.8"
+                      strokeDasharray="60"
+                      strokeDashoffset={getStrokeDashOffset(60, 0.2 + i * 0.02, 0.35 + i * 0.02)}
+                      style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
+                    />
+                  ))}
+                  {/* Solar cell grid - horizontal lines */}
+                  {[0, 1, 2].map((i) => (
+                    <line
+                      key={`solar-h-l-${i}`}
+                      x1="35" y1={180 + i * 20}
+                      x2="145" y2={180 + i * 20}
+                      stroke="#6b7280"
+                      strokeWidth="0.8"
+                      strokeDasharray="110"
+                      strokeDashoffset={getStrokeDashOffset(110, 0.25 + i * 0.02, 0.4 + i * 0.02)}
+                      style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
+                    />
+                  ))}
                   {/* Connector arm */}
-                  <div className="w-4 md:w-6 lg:w-8 h-2 bg-gradient-to-r from-slate-400 to-slate-500 rounded-r" />
-                </div>
-              </div>
+                  <line x1="150" y1="200" x2="165" y2="200" stroke="#374151" strokeWidth="3"
+                    strokeDasharray="15" strokeDashoffset={getStrokeDashOffset(15, 0.18, 0.28)}
+                  />
+                </g>
 
-              {/* Right Solar Panel - comes from right */}
-              <div
-                className="absolute right-4 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-0"
-                style={getPartStyle(2, 7, 'right')}
-              >
-                <div className="flex items-center flex-row-reverse">
-                  {/* Solar panel */}
-                  <div className="w-20 h-12 md:w-28 md:h-16 lg:w-32 lg:h-20 bg-gradient-to-l from-blue-900 via-blue-800 to-blue-700 rounded shadow-lg border border-blue-600/50 relative overflow-hidden">
-                    {/* Solar cells grid */}
-                    <div className="absolute inset-1 grid grid-cols-6 grid-rows-4 gap-px">
-                      {[...Array(24)].map((_, i) => (
-                        <div key={i} className="bg-blue-600 border border-blue-500/30" />
-                      ))}
-                    </div>
-                    {/* Shine effect */}
-                    <div className="absolute inset-0 bg-gradient-to-bl from-white/20 via-transparent to-transparent" />
-                  </div>
+                {/* Right Solar Panel */}
+                <g className="solar-panel-right">
+                  {/* Panel frame */}
+                  <rect
+                    x="250" y="165" width="120" height="70"
+                    fill="none"
+                    stroke="#374151"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeDasharray="380"
+                    strokeDashoffset={getStrokeDashOffset(380, 0.35, 0.55)}
+                    style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
+                  />
+                  {/* Solar cell grid - vertical lines */}
+                  {[0, 1, 2, 3, 4, 5].map((i) => (
+                    <line
+                      key={`solar-v-r-${i}`}
+                      x1={270 + i * 20} y1="170"
+                      x2={270 + i * 20} y2="230"
+                      stroke="#6b7280"
+                      strokeWidth="0.8"
+                      strokeDasharray="60"
+                      strokeDashoffset={getStrokeDashOffset(60, 0.4 + i * 0.02, 0.55 + i * 0.02)}
+                      style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
+                    />
+                  ))}
+                  {/* Solar cell grid - horizontal lines */}
+                  {[0, 1, 2].map((i) => (
+                    <line
+                      key={`solar-h-r-${i}`}
+                      x1="255" y1={180 + i * 20}
+                      x2="365" y2={180 + i * 20}
+                      stroke="#6b7280"
+                      strokeWidth="0.8"
+                      strokeDasharray="110"
+                      strokeDashoffset={getStrokeDashOffset(110, 0.45 + i * 0.02, 0.6 + i * 0.02)}
+                      style={{ transition: 'stroke-dashoffset 0.1s ease-out' }}
+                    />
+                  ))}
                   {/* Connector arm */}
-                  <div className="w-4 md:w-6 lg:w-8 h-2 bg-gradient-to-l from-slate-400 to-slate-500 rounded-l" />
-                </div>
-              </div>
+                  <line x1="235" y1="200" x2="250" y2="200" stroke="#374151" strokeWidth="3"
+                    strokeDasharray="15" strokeDashoffset={getStrokeDashOffset(15, 0.38, 0.48)}
+                  />
+                </g>
 
-              {/* Top Antenna - comes from top */}
-              <div
-                className="absolute left-1/2 top-12 md:top-14 lg:top-16 -translate-x-1/2 z-20"
-                style={getPartStyle(3, 7, 'down')}
-              >
-                <div className="flex flex-col items-center">
+                {/* Top Antenna Assembly */}
+                <g className="antenna-top">
+                  {/* Main antenna mast */}
+                  <line x1="200" y1="140" x2="200" y2="85" stroke="#374151" strokeWidth="2"
+                    strokeDasharray="55" strokeDashoffset={getStrokeDashOffset(55, 0.55, 0.65)}
+                  />
+                  {/* Antenna dish */}
+                  <ellipse cx="200" cy="70" rx="25" ry="15" fill="none" stroke="#374151" strokeWidth="2"
+                    strokeDasharray="100" strokeDashoffset={getStrokeDashOffset(100, 0.6, 0.72)}
+                  />
+                  {/* Dish detail lines */}
+                  <path d="M 180 70 Q 200 60 220 70" fill="none" stroke="#6b7280" strokeWidth="1"
+                    strokeDasharray="45" strokeDashoffset={getStrokeDashOffset(45, 0.65, 0.75)}
+                  />
                   {/* Antenna tip */}
-                  <div className="w-4 h-4 md:w-5 md:h-5 bg-gradient-to-b from-red-500 to-red-600 rounded-full shadow-md border border-red-400 animate-pulse" />
-                  {/* Antenna mast */}
-                  <div className="w-1 h-8 md:h-10 lg:h-12 bg-gradient-to-b from-slate-300 to-slate-500" />
-                </div>
-              </div>
+                  <circle cx="200" cy="55" r="4" fill="none" stroke="#374151" strokeWidth="1.5"
+                    strokeDasharray="25" strokeDashoffset={getStrokeDashOffset(25, 0.68, 0.78)}
+                  />
+                </g>
 
-              {/* Satellite Dish - comes from right */}
-              <div
-                className="absolute right-16 md:right-20 lg:right-24 top-24 md:top-28 lg:top-32 z-20"
-                style={getPartStyle(4, 7, 'right')}
-              >
-                <div className="relative">
-                  {/* Dish mount */}
-                  <div className="w-1 h-5 bg-slate-500 absolute -bottom-1 left-1/2 -translate-x-1/2" />
-                  {/* Dish */}
-                  <div className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-gradient-to-br from-slate-200 via-slate-300 to-slate-400 border-2 border-slate-400 shadow-lg relative">
-                    <div className="absolute inset-2 rounded-full border border-slate-300" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-slate-600 rounded-full" />
-                  </div>
-                </div>
-              </div>
+                {/* Bottom Thruster Module */}
+                <g className="thruster-module">
+                  {/* Main thruster body */}
+                  <path
+                    d="M 185 260 L 185 290 Q 185 300 195 300 L 205 300 Q 215 300 215 290 L 215 260"
+                    fill="none"
+                    stroke="#374151"
+                    strokeWidth="2"
+                    strokeDasharray="100"
+                    strokeDashoffset={getStrokeDashOffset(100, 0.72, 0.85)}
+                  />
+                  {/* Thruster nozzles */}
+                  <path d="M 188 300 L 185 320 L 195 315 L 205 315 L 215 320 L 212 300" fill="none" stroke="#4b5563" strokeWidth="1.5"
+                    strokeDasharray="80" strokeDashoffset={getStrokeDashOffset(80, 0.78, 0.88)}
+                  />
+                  {/* Thruster detail lines */}
+                  <line x1="190" y1="305" x2="190" y2="315" stroke="#6b7280" strokeWidth="1"
+                    strokeDasharray="10" strokeDashoffset={getStrokeDashOffset(10, 0.82, 0.9)}
+                  />
+                  <line x1="200" y1="305" x2="200" y2="318" stroke="#6b7280" strokeWidth="1"
+                    strokeDasharray="13" strokeDashoffset={getStrokeDashOffset(13, 0.83, 0.91)}
+                  />
+                  <line x1="210" y1="305" x2="210" y2="315" stroke="#6b7280" strokeWidth="1"
+                    strokeDasharray="10" strokeDashoffset={getStrokeDashOffset(10, 0.84, 0.92)}
+                  />
+                </g>
 
-              {/* Secondary Antenna - comes from left */}
-              <div
-                className="absolute left-16 md:left-20 lg:left-24 top-24 md:top-28 lg:top-32 z-20"
-                style={getPartStyle(5, 7, 'left')}
-              >
-                <div className="flex flex-col items-center">
-                  <div className="w-3 h-3 bg-slate-500 rounded-full" />
-                  <div className="w-0.5 h-6 md:h-8 bg-slate-400" />
-                </div>
-              </div>
+                {/* Engineering Dimension Lines */}
+                <g className="dimensions" opacity={drawProgress > 0.85 ? (drawProgress - 0.85) / 0.15 : 0}>
+                  {/* Width dimension */}
+                  <line x1="30" y1="250" x2="150" y2="250" stroke="#9ca3af" strokeWidth="0.5" strokeDasharray="3 2"/>
+                  <line x1="30" y1="245" x2="30" y2="255" stroke="#9ca3af" strokeWidth="0.5"/>
+                  <line x1="150" y1="245" x2="150" y2="255" stroke="#9ca3af" strokeWidth="0.5"/>
+                  <text x="90" y="265" textAnchor="middle" fontSize="8" fill="#9ca3af" fontFamily="monospace">120mm</text>
+                  
+                  {/* Height dimension */}
+                  <line x1="245" y1="140" x2="245" y2="260" stroke="#9ca3af" strokeWidth="0.5" strokeDasharray="3 2"/>
+                  <line x1="240" y1="140" x2="250" y2="140" stroke="#9ca3af" strokeWidth="0.5"/>
+                  <line x1="240" y1="260" x2="250" y2="260" stroke="#9ca3af" strokeWidth="0.5"/>
+                  <text x="260" y="205" fontSize="8" fill="#9ca3af" fontFamily="monospace" transform="rotate(90, 260, 205)">120mm</text>
+                </g>
 
-              {/* Thruster Module - comes from bottom */}
-              <div
-                className="absolute left-1/2 bottom-16 md:bottom-20 lg:bottom-24 -translate-x-1/2 z-20"
-                style={getPartStyle(6, 7, 'up')}
-              >
-                <div className="flex items-end gap-1">
-                  {/* Left thruster */}
-                  <div className="w-3 h-6 md:w-4 md:h-8 bg-gradient-to-b from-slate-500 to-slate-600 rounded-b-full relative">
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-1 bg-slate-700 rounded-b" />
-                  </div>
-                  {/* Center thruster (main) */}
-                  <div className="w-4 h-8 md:w-5 md:h-10 bg-gradient-to-b from-slate-500 to-slate-600 rounded-b-full relative">
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-1 bg-slate-700 rounded-b" />
-                  </div>
-                  {/* Right thruster */}
-                  <div className="w-3 h-6 md:w-4 md:h-8 bg-gradient-to-b from-slate-500 to-slate-600 rounded-b-full relative">
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-1 bg-slate-700 rounded-b" />
-                  </div>
-                </div>
-                
-                {/* Thruster flames when assembled */}
-                {isFullyAssembled && (
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-1">
-                    <div className="w-2 h-5 bg-gradient-to-b from-orange-500 via-yellow-400 to-transparent rounded-b-full blur-[2px] animate-pulse opacity-80" />
-                    <div className="w-3 h-7 bg-gradient-to-b from-orange-500 via-yellow-400 to-transparent rounded-b-full blur-[2px] animate-pulse opacity-90" />
-                    <div className="w-2 h-5 bg-gradient-to-b from-orange-500 via-yellow-400 to-transparent rounded-b-full blur-[2px] animate-pulse opacity-80" />
-                  </div>
+                {/* Engineering Labels */}
+                <g className="labels" opacity={drawProgress > 0.88 ? (drawProgress - 0.88) / 0.12 : 0}>
+                  <text x="200" y="45" textAnchor="middle" fontSize="9" fill="#6b7280" fontFamily="monospace">COMM ARRAY</text>
+                  <text x="90" y="155" textAnchor="middle" fontSize="9" fill="#6b7280" fontFamily="monospace">SOLAR PANEL A</text>
+                  <text x="310" y="155" textAnchor="middle" fontSize="9" fill="#6b7280" fontFamily="monospace">SOLAR PANEL B</text>
+                  <text x="200" y="340" textAnchor="middle" fontSize="9" fill="#6b7280" fontFamily="monospace">PROPULSION</text>
+                </g>
+
+                {/* Center crosshair when complete */}
+                {isComplete && (
+                  <g className="crosshair" opacity="0.3">
+                    <line x1="200" y1="180" x2="200" y2="220" stroke="#ef4444" strokeWidth="0.5"/>
+                    <line x1="180" y1="200" x2="220" y2="200" stroke="#ef4444" strokeWidth="0.5"/>
+                    <circle cx="200" cy="200" r="10" fill="none" stroke="#ef4444" strokeWidth="0.5"/>
+                  </g>
                 )}
-              </div>
+              </svg>
 
-              {/* Assembly complete glow effect */}
-              {isFullyAssembled && (
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-blue-400/10 rounded-full blur-3xl animate-pulse" />
-                </div>
-              )}
-
-              {/* Assembly progress indicator */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
-                <div className="w-32 h-1 bg-neutral-200 rounded-full overflow-hidden">
+              {/* Drawing progress indicator */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                <div className="w-36 h-1 bg-neutral-200 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-gradient-to-r from-rose-400 to-amber-400 rounded-full transition-all duration-100"
-                    style={{ width: `${Math.min(scrollProgress * 120, 100)}%` }}
+                    className="h-full bg-gradient-to-r from-neutral-400 to-neutral-600 rounded-full transition-all duration-100"
+                    style={{ width: `${Math.min(drawProgress * 110, 100)}%` }}
                   />
                 </div>
-                <span className="text-xs text-neutral-400 mt-2 font-mono">
-                  {Math.min(Math.round(scrollProgress * 120), 100)}% assembled
+                <span className="text-xs text-neutral-400 mt-2 font-mono tracking-wider">
+                  {Math.min(Math.round(drawProgress * 110), 100)}% drafted
                 </span>
               </div>
+
+              {/* Blueprint stamp when complete */}
+              {isComplete && (
+                <div className="absolute top-4 right-4 opacity-40">
+                  <div className="border-2 border-neutral-400 rounded px-3 py-1 rotate-[-15deg]">
+                    <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider">Approved</span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -289,7 +344,7 @@ const HeroSection = () => {
         onClick={scrollToAbout}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 text-neutral-400 hover:text-neutral-900 transition-colors duration-300 cursor-pointer"
       >
-        <span className="text-xs uppercase tracking-widest">Scroll to assemble</span>
+        <span className="text-xs uppercase tracking-widest font-mono">Scroll to draft</span>
         <ChevronDown size={20} className="animate-bounce" />
       </button>
     </section>
