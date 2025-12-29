@@ -343,6 +343,7 @@ const EventsNewsPage = () => {
       )}
 
       <Footer />
+      <CybotChatbot />
     </div>
   );
 };
