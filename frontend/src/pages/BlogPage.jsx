@@ -157,6 +157,7 @@ const BlogPage = () => {
       </section>
 
       <Footer />
+      <CybotChatbot />
     </div>
   );
 };
