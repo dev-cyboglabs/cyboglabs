@@ -42,11 +42,57 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-neutral-50">
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
+      {/* Cloudy Gradient Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Main cloudy gradient layer */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(ellipse 80% 50% at 20% 40%, rgba(251, 207, 232, 0.4) 0%, transparent 50%),
+              radial-gradient(ellipse 60% 40% at 70% 30%, rgba(254, 215, 170, 0.35) 0%, transparent 50%),
+              radial-gradient(ellipse 70% 50% at 40% 60%, rgba(252, 231, 243, 0.3) 0%, transparent 50%),
+              radial-gradient(ellipse 50% 30% at 80% 70%, rgba(254, 243, 199, 0.25) 0%, transparent 50%),
+              radial-gradient(ellipse 90% 60% at 10% 80%, rgba(249, 168, 212, 0.2) 0%, transparent 50%)
+            `,
+          }}
+        />
+        
+        {/* Animated floating clouds */}
+        <div 
+          className="absolute w-[600px] h-[400px] md:w-[800px] md:h-[500px] rounded-full blur-3xl opacity-40 animate-pulse"
+          style={{
+            background: 'linear-gradient(135deg, rgba(251, 207, 232, 0.5) 0%, rgba(254, 215, 170, 0.3) 100%)',
+            top: '10%',
+            left: '-10%',
+            animationDuration: '8s',
+          }}
+        />
+        <div 
+          className="absolute w-[500px] h-[350px] md:w-[700px] md:h-[450px] rounded-full blur-3xl opacity-30 animate-pulse"
+          style={{
+            background: 'linear-gradient(225deg, rgba(254, 243, 199, 0.5) 0%, rgba(252, 231, 243, 0.3) 100%)',
+            top: '30%',
+            right: '-5%',
+            animationDuration: '10s',
+            animationDelay: '2s',
+          }}
+        />
+        <div 
+          className="absolute w-[400px] h-[300px] md:w-[600px] md:h-[400px] rounded-full blur-3xl opacity-25 animate-pulse"
+          style={{
+            background: 'linear-gradient(180deg, rgba(249, 168, 212, 0.4) 0%, rgba(254, 215, 170, 0.2) 100%)',
+            bottom: '10%',
+            left: '20%',
+            animationDuration: '12s',
+            animationDelay: '4s',
+          }}
+        />
+        
+        {/* Subtle grid pattern overlay */}
         <div
-          className="absolute inset-0 opacity-[0.015]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: `
               linear-gradient(to right, #000 1px, transparent 1px),
