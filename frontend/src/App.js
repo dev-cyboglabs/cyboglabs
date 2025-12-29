@@ -10,6 +10,7 @@ import CareersPage from "./pages/CareersPage";
 import JobDetailPage from "./pages/JobDetailPage";
 import EventsNewsPage from "./pages/EventsNewsPage";
 import InternshipsPage from "./pages/InternshipsPage";
+import FAQPage from "./pages/FAQPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/careers/:id" element={<JobDetailPage />} />
           <Route path="/events-news" element={<EventsNewsPage />} />
           <Route path="/internships" element={<InternshipsPage />} />
+          <Route path="/faq" element={<FAQPage />} />
         </Routes>
       </BrowserRouter>
     </div>
