@@ -167,7 +167,7 @@ const Footer = () => {
               © {currentYear} CYBOGLABS. All rights reserved.
             </p>
             <p className="text-neutral-500 text-sm">
-              The FUTURE is calling! CYBOGLABS is answering!
+              Engineering Tomorrow's Breakthroughs — Where Innovation Meets Excellence
             </p>
           </div>
         </div>
