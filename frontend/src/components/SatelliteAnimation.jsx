@@ -1,8 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 
 const SatelliteAnimation = () => {
   const containerRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Pre-generate star positions to avoid Math.random during render
+  const stars = useMemo(() => {
+    return [...Array(100)].map((_, i) => ({
+      id: i,
+      left: `${(i * 17 + 23) % 100}%`,
+      top: `${(i * 31 + 7) % 100}%`,
+      delay: `${(i * 0.03) % 3}s`,
+      opacity: 0.2 + ((i * 13) % 80) / 100,
+    }));
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,15 +62,15 @@ const SatelliteAnimation = () => {
     >
       {/* Stars Background */}
       <div className="absolute inset-0">
-        {[...Array(100)].map((_, i) => (
+        {stars.map((star) => (
           <div
-            key={i}
+            key={star.id}
             className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              opacity: Math.random() * 0.8 + 0.2,
+              left: star.left,
+              top: star.top,
+              animationDelay: star.delay,
+              opacity: star.opacity,
             }}
           />
         ))}
