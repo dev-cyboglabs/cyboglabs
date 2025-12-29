@@ -4,7 +4,6 @@ import Footer from '../components/Footer';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
 import ProjectsSection from '../components/ProjectsSection';
-import SatelliteAnimation from '../components/SatelliteAnimation';
 import BlogPreview from '../components/BlogPreview';
 import ContactSection from '../components/ContactSection';
 
@@ -15,7 +14,6 @@ const HomePage = () => {
       <main>
         <HeroSection />
         <AboutSection />
-        <SatelliteAnimation />
         <ProjectsSection />
         <BlogPreview />
         <ContactSection />
