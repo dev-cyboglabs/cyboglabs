@@ -113,6 +113,7 @@ const TermsPage = () => {
       </section>
 
       <Footer />
+      <CybotChatbot />
     </div>
   );
 };
