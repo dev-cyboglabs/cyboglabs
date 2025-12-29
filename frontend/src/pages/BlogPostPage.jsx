@@ -4,6 +4,7 @@ import { Calendar, User, ArrowLeft, ArrowRight, Tag, Share2 } from 'lucide-react
 import { blogPosts } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CybotChatbot from '../components/CybotChatbot';
 
 const BlogPostPage = () => {
   const { id } = useParams();
