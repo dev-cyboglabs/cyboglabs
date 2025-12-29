@@ -251,6 +251,7 @@ const CareersPage = () => {
       </section>
 
       <Footer />
+      <CybotChatbot />
     </div>
   );
 };
