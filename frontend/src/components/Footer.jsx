@@ -27,6 +27,7 @@ const Footer = () => {
     legal: [
       { name: 'Terms & Conditions', path: '/terms' },
       { name: 'Privacy Policy', path: '/privacy' },
+      { name: 'FAQ', path: '/faq' },
     ],
   };
 
