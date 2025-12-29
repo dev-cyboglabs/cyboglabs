@@ -6,6 +6,8 @@ import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import CareersPage from "./pages/CareersPage";
+import JobDetailPage from "./pages/JobDetailPage";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/blog/:id" element={<BlogPostPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/careers/:id" element={<JobDetailPage />} />
         </Routes>
       </BrowserRouter>
     </div>
