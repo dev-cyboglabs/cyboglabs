@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, MapPin, Clock, GraduationCap, CheckCircle, Send,
 import { internships } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CybotChatbot from '../components/CybotChatbot';
 
 const InternshipsPage = () => {
   const [showApplicationModal, setShowApplicationModal] = useState(false);
