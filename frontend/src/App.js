@@ -8,6 +8,8 @@ import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import CareersPage from "./pages/CareersPage";
 import JobDetailPage from "./pages/JobDetailPage";
+import EventsNewsPage from "./pages/EventsNewsPage";
+import InternshipsPage from "./pages/InternshipsPage";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/careers/:id" element={<JobDetailPage />} />
+          <Route path="/events-news" element={<EventsNewsPage />} />
+          <Route path="/internships" element={<InternshipsPage />} />
         </Routes>
       </BrowserRouter>
     </div>
