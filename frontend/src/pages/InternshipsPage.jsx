@@ -495,6 +495,7 @@ const InternshipsPage = () => {
       )}
 
       <Footer />
+      <CybotChatbot />
     </div>
   );
 };
