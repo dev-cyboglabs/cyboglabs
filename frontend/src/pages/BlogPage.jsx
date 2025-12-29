@@ -4,6 +4,7 @@ import { Calendar, User, ArrowRight, ArrowLeft, Search, Tag } from 'lucide-react
 import { blogPosts } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CybotChatbot from '../components/CybotChatbot';
 
 const BlogPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
