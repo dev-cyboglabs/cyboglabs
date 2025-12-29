@@ -468,3 +468,383 @@ At CYBOGLABS, you will work on the complete hardware development lifecycle from 
     techStack: ["C", "C++", "ARM Cortex-M", "STM32", "ESP32", "FreeRTOS", "Altium Designer", "Python", "I2C", "SPI", "BLE", "Wi-Fi"]
   }
 ];
+
+export const internships = [
+  {
+    id: 1,
+    title: "AI/ML Research Intern",
+    department: "Artificial Intelligence",
+    duration: "3-6 months",
+    location: "Hybrid",
+    stipend: "Paid",
+    posted: "July 2025",
+    description: "Work alongside our AI team to research and implement cutting-edge machine learning algorithms. You will get hands-on experience with deep learning frameworks, computer vision, and natural language processing projects.",
+    requirements: [
+      "Currently pursuing B.Tech/M.Tech/PhD in Computer Science, AI/ML, or related field",
+      "Strong foundation in mathematics: linear algebra, calculus, probability, and statistics",
+      "Programming proficiency in Python with knowledge of NumPy, Pandas",
+      "Familiarity with deep learning frameworks: PyTorch or TensorFlow",
+      "Understanding of ML concepts: regression, classification, neural networks",
+      "Good communication skills and ability to work in a team"
+    ],
+    learnings: [
+      "Real-world ML model development and deployment",
+      "MLOps practices and tools",
+      "Research methodology and paper implementation",
+      "Industry best practices in AI development"
+    ]
+  },
+  {
+    id: 2,
+    title: "Full Stack Development Intern",
+    department: "Software Engineering",
+    duration: "3-6 months",
+    location: "Hybrid",
+    stipend: "Paid",
+    posted: "July 2025",
+    description: "Join our product development team to build scalable web applications. You will work on both frontend and backend technologies, contributing to real products that impact thousands of users.",
+    requirements: [
+      "Currently pursuing B.Tech/M.Tech in Computer Science or related field",
+      "Knowledge of HTML, CSS, JavaScript, and at least one frontend framework (React/Vue/Angular)",
+      "Basic understanding of backend development (Node.js/Python/Java)",
+      "Familiarity with databases (SQL/NoSQL)",
+      "Understanding of REST APIs and web services",
+      "Version control experience with Git"
+    ],
+    learnings: [
+      "Modern web development practices",
+      "Agile development methodology",
+      "Cloud deployment and DevOps basics",
+      "Code review and collaboration workflows"
+    ]
+  },
+  {
+    id: 3,
+    title: "Embedded Systems Intern",
+    department: "Hardware Engineering",
+    duration: "4-6 months",
+    location: "On-site",
+    stipend: "Paid",
+    posted: "July 2025",
+    description: "Get hands-on experience with embedded systems development, working on IoT devices, sensor integration, and firmware development. Perfect for students passionate about hardware-software integration.",
+    requirements: [
+      "Currently pursuing B.Tech/M.Tech in Electronics, Electrical, or Computer Engineering",
+      "Basic knowledge of C/C++ programming",
+      "Understanding of microcontrollers (Arduino, ESP32, STM32)",
+      "Familiarity with basic electronics and circuit design",
+      "Knowledge of communication protocols (UART, SPI, I2C) is a plus",
+      "Enthusiasm for hardware projects and IoT"
+    ],
+    learnings: [
+      "Professional firmware development practices",
+      "PCB design and prototyping",
+      "Real-time operating systems (RTOS)",
+      "Hardware debugging techniques"
+    ]
+  },
+  {
+    id: 4,
+    title: "Cloud & DevOps Intern",
+    department: "Infrastructure",
+    duration: "3-6 months",
+    location: "Remote",
+    stipend: "Paid",
+    posted: "July 2025",
+    description: "Learn cloud infrastructure and DevOps practices by working on real deployment pipelines, containerization, and cloud services. Ideal for students interested in modern infrastructure technologies.",
+    requirements: [
+      "Currently pursuing B.Tech/M.Tech in Computer Science or IT",
+      "Basic knowledge of Linux and command line",
+      "Understanding of networking fundamentals",
+      "Familiarity with at least one programming language (Python/Bash)",
+      "Interest in cloud technologies (AWS/GCP/Azure)",
+      "Basic understanding of Docker is a plus"
+    ],
+    learnings: [
+      "CI/CD pipeline development",
+      "Container orchestration with Kubernetes",
+      "Infrastructure as Code (Terraform)",
+      "Cloud services and architecture patterns"
+    ]
+  }
+];
+
+export const eventsAndNews = [
+  {
+    id: 1,
+    type: "event",
+    title: "Matrivis Selected for IIT Madras Port Innovation Challenge",
+    subtitle: "Chennai Port Operations Transformation",
+    date: "August 2025",
+    location: "IIT Madras, Chennai",
+    category: "Achievement",
+    featured: true,
+    image: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&auto=format&fit=crop&q=60",
+    shortDescription: "Our Matrivis digital warehouse intelligence system has been selected by IIT Madras for the prestigious Port Innovation Challenge to transform Chennai port operations.",
+    fullContent: `We are thrilled to announce that CYBOGLABS' Matrivis platform has been selected by the Indian Institute of Technology Madras (IIT-M) for the prestigious Port Innovation Challenge 2025, focusing on transforming Chennai port operations.
+
+**About the Selection**
+
+Matrivis was chosen from over 150 submissions across India for its innovative approach to digital warehouse intelligence and port logistics optimization. The selection committee, comprising industry experts and IIT-M faculty, recognized Matrivis for its:
+
+• Real-time cargo tracking and visibility solutions
+• AI-powered predictive analytics for port operations
+• Seamless integration with existing port management systems
+• Scalable architecture designed for high-volume operations
+
+**Project Scope**
+
+The pilot project will be implemented at Chennai Port Trust, one of India's largest ports handling over 50 million tonnes of cargo annually. Key focus areas include:
+
+• Container tracking and yard management optimization
+• Automated berth allocation and vessel scheduling
+• Predictive maintenance for port equipment
+• Digital twin implementation for operational simulation
+
+**Timeline & Next Steps**
+
+The project will commence in August 2025 with a 12-month implementation roadmap. Our team will work closely with IIT-M researchers and Chennai Port Authority to deliver a transformative solution.
+
+This recognition validates our commitment to building technology that solves real-world infrastructure challenges.`
+  },
+  {
+    id: 2,
+    type: "news",
+    title: "The Rise of Edge AI: Transforming Industrial IoT",
+    subtitle: "How Edge Computing is Revolutionizing Manufacturing",
+    date: "July 2025",
+    category: "Technology",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=60",
+    shortDescription: "Edge AI is revolutionizing industrial IoT by bringing machine learning capabilities directly to factory floors, enabling real-time decision making without cloud dependency.",
+    fullContent: `Edge AI represents a paradigm shift in how we deploy artificial intelligence in industrial environments. By processing data locally on edge devices, manufacturers can achieve unprecedented levels of automation and efficiency.
+
+**What is Edge AI?**
+
+Edge AI refers to the deployment of artificial intelligence algorithms directly on edge devices—sensors, cameras, and embedded systems—rather than relying on cloud-based processing. This approach offers several critical advantages:
+
+• **Ultra-low Latency**: Real-time processing enables immediate response to anomalies
+• **Data Privacy**: Sensitive operational data stays on-premises
+• **Bandwidth Efficiency**: Only processed insights are transmitted
+• **Reliability**: Operations continue even without internet connectivity
+
+**Industrial Applications**
+
+Edge AI is transforming various industrial sectors:
+
+**Predictive Maintenance**
+Machine learning models running on edge devices analyze vibration patterns, temperature fluctuations, and acoustic signatures to predict equipment failures before they occur, reducing downtime by up to 50%.
+
+**Quality Control**
+Computer vision systems powered by edge AI inspect products at production line speeds, detecting defects invisible to human inspectors with 99.9% accuracy.
+
+**Safety Monitoring**
+Real-time video analytics identify safety hazards, unauthorized access, and compliance violations, creating safer work environments.
+
+**The Technology Stack**
+
+Modern edge AI deployments typically utilize:
+• NVIDIA Jetson or Google Coral for inference acceleration
+• TensorRT or TensorFlow Lite for model optimization
+• Docker containers for deployment flexibility
+• MQTT or OPC-UA for industrial communication
+
+**Future Outlook**
+
+As edge hardware becomes more powerful and AI models more efficient, we expect edge AI to become the default deployment model for industrial applications by 2027.`
+  },
+  {
+    id: 3,
+    type: "event",
+    title: "CYBOGLABS at India Tech Summit 2025",
+    subtitle: "Showcasing Innovation in R&D",
+    date: "September 2025",
+    location: "Bangalore International Exhibition Centre",
+    category: "Conference",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=60",
+    shortDescription: "Join us at India Tech Summit 2025 where we will be showcasing our latest innovations in AI, IoT, and embedded systems.",
+    fullContent: `CYBOGLABS is excited to participate in India Tech Summit 2025, one of the largest technology conferences in South Asia, bringing together over 10,000 tech enthusiasts, entrepreneurs, and industry leaders.
+
+**Our Presence**
+
+Visit us at **Booth #A-127** in the Innovation Pavilion where we will be demonstrating:
+
+• **Pixzee.ai Live Demo**: Experience our AI-powered apparel analysis platform in action
+• **Seabot.ai Showcase**: Interactive demonstration of marine data monitoring capabilities  
+• **Hardware Prototypes**: Hands-on experience with our embedded systems projects
+
+**Speaking Sessions**
+
+Our team will be presenting at multiple sessions:
+
+**Day 1 - 10:30 AM**
+"Building AI Products for Real-World Impact"
+Speaker: AI/ML Architecture Team
+
+**Day 2 - 2:00 PM**
+"Hardware-Software Co-Development: Lessons from the Field"
+Speaker: Hardware Engineering Team
+
+**Networking Opportunities**
+
+We are actively seeking:
+• Partnership opportunities with technology companies
+• Collaboration with academic institutions
+• Talented engineers to join our team
+
+**Registration**
+
+Conference attendees can pre-book a demo slot at our booth. Limited slots available for exclusive product previews.
+
+See you in Bangalore!`
+  },
+  {
+    id: 4,
+    type: "news",
+    title: "Quantum Computing: The Next Frontier for R&D",
+    subtitle: "Understanding Quantum Advantage in Problem Solving",
+    date: "July 2025",
+    category: "Research",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&auto=format&fit=crop&q=60",
+    shortDescription: "Quantum computing is transitioning from theoretical research to practical applications, promising to revolutionize drug discovery, optimization, and cryptography.",
+    fullContent: `Quantum computing has moved beyond the realm of theoretical physics into practical engineering, with major implications for research and development across industries.
+
+**Quantum Basics**
+
+Unlike classical computers that use bits (0 or 1), quantum computers use qubits that can exist in superposition—simultaneously representing both 0 and 1. This property, combined with quantum entanglement, enables exponential computational speedup for certain problem classes.
+
+**Current State of Technology**
+
+• **IBM**: 1,121-qubit Condor processor
+• **Google**: Demonstrated quantum supremacy with 72-qubit Bristlecone
+• **IonQ**: Trapped ion systems with high gate fidelity
+• **D-Wave**: 5,000+ qubit quantum annealing systems
+
+**Practical Applications**
+
+**Drug Discovery**
+Quantum simulation of molecular interactions could reduce drug development timelines from 10+ years to months, potentially saving billions in R&D costs.
+
+**Optimization Problems**
+Supply chain optimization, portfolio management, and logistics routing can be solved exponentially faster using quantum algorithms like QAOA and VQE.
+
+**Cryptography**
+While quantum computers threaten current encryption (RSA, ECC), they also enable quantum key distribution (QKD) for theoretically unbreakable communication.
+
+**Machine Learning**
+Quantum machine learning algorithms promise speedups in training large models and processing high-dimensional data.
+
+**Challenges Ahead**
+
+• Maintaining qubit coherence at scale
+• Error correction overhead
+• Cryogenic cooling requirements
+• Algorithm development for near-term devices
+
+**Timeline to Practical Advantage**
+
+Industry experts predict commercially viable quantum advantage for specific applications by 2028-2030, with broader adoption following as hardware matures.`
+  },
+  {
+    id: 5,
+    type: "news",
+    title: "5G and IoT: Enabling the Connected Factory",
+    subtitle: "Private 5G Networks Transform Manufacturing",
+    date: "June 2025",
+    category: "Technology",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=60",
+    shortDescription: "Private 5G networks are revolutionizing industrial IoT deployments, offering unprecedented reliability, bandwidth, and low latency for connected factory applications.",
+    fullContent: `The convergence of 5G technology and Industrial IoT is creating new possibilities for smart manufacturing, with private 5G networks emerging as the connectivity backbone for Industry 4.0.
+
+**Why Private 5G?**
+
+Traditional WiFi and wired networks struggle to meet the demands of modern manufacturing:
+
+• **Reliability**: 99.999% uptime requirement for critical operations
+• **Latency**: Sub-millisecond response for real-time control
+• **Density**: Thousands of devices per square kilometer
+• **Security**: Isolated network with complete data control
+
+Private 5G addresses all these challenges while providing the flexibility of wireless connectivity.
+
+**Key Use Cases**
+
+**Autonomous Mobile Robots (AMRs)**
+5G enables real-time coordination of robot fleets with precise positioning and instant response to dynamic environments.
+
+**Augmented Reality Maintenance**
+Technicians using AR headsets receive real-time guidance overlaid on equipment, with high-bandwidth video streaming and low-latency interaction.
+
+**Digital Twin Synchronization**
+Real-time sensor data feeds into digital twins, enabling predictive simulation and optimization of production processes.
+
+**Remote Expert Assistance**
+High-definition video conferencing with haptic feedback allows remote experts to guide on-site technicians through complex procedures.
+
+**Implementation Considerations**
+
+• Spectrum licensing (CBRS in US, local regulations elsewhere)
+• Integration with existing OT systems
+• Device ecosystem and compatibility
+• Total cost of ownership vs. WiFi 6
+
+**Market Outlook**
+
+The private 5G market for manufacturing is projected to grow from $1.2B in 2024 to $8.5B by 2028, driven by increasing automation demands and decreasing equipment costs.`
+  },
+  {
+    id: 6,
+    type: "event",
+    title: "Workshop: Introduction to Embedded AI",
+    subtitle: "Hands-on Learning with TinyML",
+    date: "October 2025",
+    location: "CYBOGLABS Office / Virtual",
+    category: "Workshop",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=60",
+    shortDescription: "A hands-on workshop teaching the fundamentals of deploying machine learning models on microcontrollers using TinyML frameworks.",
+    fullContent: `CYBOGLABS is hosting an intensive workshop on Embedded AI and TinyML, designed for engineers and students looking to deploy machine learning on resource-constrained devices.
+
+**Workshop Overview**
+
+This 2-day workshop covers the complete pipeline from model development to deployment on microcontrollers. Participants will build working prototypes using real hardware.
+
+**What You Will Learn**
+
+**Day 1: Foundations**
+• Introduction to TinyML and edge inference
+• Model architectures suitable for microcontrollers
+• Quantization and optimization techniques
+• TensorFlow Lite Micro framework deep-dive
+
+**Day 2: Hands-on Implementation**
+• Setting up development environment
+• Building a keyword spotting model
+• Deploying on Arduino Nano 33 BLE Sense
+• Performance profiling and optimization
+
+**Prerequisites**
+
+• Basic Python programming knowledge
+• Familiarity with machine learning concepts
+• No hardware experience required (kit provided)
+
+**What's Included**
+
+• Arduino Nano 33 BLE Sense development kit (yours to keep)
+• Workshop materials and code repositories
+• Certificate of completion
+• Access to CYBOGLABS learning community
+
+**Registration Details**
+
+• **Date**: October 15-16, 2025
+• **Mode**: Hybrid (In-person + Virtual)
+• **Capacity**: 30 participants (in-person), unlimited (virtual)
+• **Fee**: ₹2,500 (students), ₹5,000 (professionals)
+
+Early bird discount of 20% available until September 30, 2025.`
+  }
+];
