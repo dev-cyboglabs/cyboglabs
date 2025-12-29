@@ -27,18 +27,23 @@ const Footer = () => {
 
   return (
     <footer className="bg-neutral-950 text-white">
+      {/* Gradient Accent Line */}
+      <div 
+        className="h-1"
+        style={{
+          background: 'linear-gradient(90deg, #ec4899 0%, #f97316 50%, #fb923c 100%)',
+        }}
+      />
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-flex items-center space-x-2 group mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-white to-neutral-300 rounded-xl flex items-center justify-center">
-                <span className="text-neutral-900 font-bold text-lg">C</span>
+              <div className="flex flex-col leading-none">
+                <span className="text-sm font-bold tracking-wider text-white">CYBOG</span>
+                <span className="text-sm font-bold tracking-wider text-white">LABS</span>
               </div>
-              <span className="font-semibold text-lg tracking-tight text-white">
-                CYBOGLABS
-              </span>
             </Link>
             <p className="text-neutral-400 text-sm leading-relaxed mb-6">
               {companyInfo.about.slice(0, 150)}...
