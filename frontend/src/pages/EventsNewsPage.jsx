@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Calendar, MapPin, Tag, X, Award, Newspaper } fro
 import { eventsAndNews } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CybotChatbot from '../components/CybotChatbot';
 
 const EventsNewsPage = () => {
   const [filter, setFilter] = useState('all');
