@@ -140,6 +140,7 @@ const PrivacyPage = () => {
       </section>
 
       <Footer />
+      <CybotChatbot />
     </div>
   );
 };
