@@ -100,7 +100,7 @@ const ContactSection = () => {
                   <Check className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-neutral-900 mb-2">Thank You!</h3>
-                <p className="text-neutral-600">We'll get back to you within 24-48 hours.</p>
+                <p className="text-neutral-600">We&apos;ll get back to you within 24-48 hours.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
