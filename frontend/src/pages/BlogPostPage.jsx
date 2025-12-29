@@ -25,7 +25,7 @@ const BlogPostPage = () => {
         <Navbar />
         <div className="pt-32 pb-20 text-center">
           <h1 className="text-4xl font-bold text-neutral-900 mb-4">Post Not Found</h1>
-          <p className="text-neutral-600 mb-8">The article you're looking for doesn't exist.</p>
+          <p className="text-neutral-600 mb-8">The article you are looking for does not exist.</p>
           <Link
             to="/blog"
             className="inline-flex items-center px-6 py-3 bg-neutral-900 text-white rounded-full hover:bg-neutral-800 transition-colors duration-300"
