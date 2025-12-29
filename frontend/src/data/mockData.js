@@ -4,10 +4,86 @@ export const companyInfo = {
   name: "CYBOGLABS",
   tagline: "Technology & Life",
   email: "support@cyboglabs.com",
+  careersEmail: "careers@cyboglabs.com",
   vision: "To emerge as the world's leader in R&D, creating long-term innovation that defines the future of technology and enhances human affairs around the globe.",
   mission: "To deliver high-impact R&D solutions that address real-world challenges. To foster innovation through collaboration, creativity & technology. To empower businesses with scalable, efficient & future-ready solutions.",
   about: "We are a future-driven R&D powerhouse committed to pushing boundaries and turning visionary ideas into cutting-edge innovations. For us, the future isn't something to predict, it's something to create."
 };
+
+export const faqData = [
+  {
+    id: 1,
+    category: "General",
+    question: "What is CYBOGLABS?",
+    answer: "CYBOGLABS is a future-driven R&D powerhouse committed to pushing boundaries and turning visionary ideas into cutting-edge innovations. Our tagline 'Technology & Life' reflects our mission to create technology that enhances human affairs around the globe."
+  },
+  {
+    id: 2,
+    category: "General",
+    question: "What are CYBOGLABS' core specialties?",
+    answer: "We specialize in six key areas: Product-Driven Engineering R&D, AI & Machine Learning Systems, Hardware-Software Co-Development, Technology Problem Solving, Experimental Prototyping & Validation, and End-to-End Product Ownership."
+  },
+  {
+    id: 3,
+    category: "Products",
+    question: "What products has CYBOGLABS developed?",
+    answer: "We have developed multiple innovative products including SpotyTags (hospitality automation), Pixzee.ai (AI fashion platform), PixzeePod (retail assistant), Seabot.ai (marine data platform), Matrivis (warehouse intelligence), TestRive (driving simulation), Lockfee & SpotAxis (parking solutions), ZepTrack (pharmacy automation), and WONDS (warranty platform)."
+  },
+  {
+    id: 4,
+    category: "Products",
+    question: "What is Matrivis and why was it selected by IIT Madras?",
+    answer: "Matrivis is a digital warehouse intelligence system designed for port and logistics operations. It was selected by IIT Madras for the Port Innovation Challenge 2025 to transform Chennai port operations due to its innovative approach to real-time cargo tracking, AI-powered predictive analytics, and seamless integration capabilities."
+  },
+  {
+    id: 5,
+    category: "Careers",
+    question: "What career opportunities are available at CYBOGLABS?",
+    answer: "We are currently hiring for DevOps Engineer (3-6 years), AI/ML Architect (5-10 years), Cloud Architect (6-10 years), and Hardware & Embedded Systems Engineer (4-8 years). Visit our Careers page or email careers@cyboglabs.com for more details."
+  },
+  {
+    id: 6,
+    category: "Careers",
+    question: "Does CYBOGLABS offer internships?",
+    answer: "Yes! We offer paid internships in AI/ML Research, Full Stack Development, Embedded Systems, and Cloud & DevOps. Internships typically last 3-6 months and provide hands-on experience with real projects, mentorship from industry experts, and potential pre-placement opportunities."
+  },
+  {
+    id: 7,
+    category: "Careers",
+    question: "What is the work culture at CYBOGLABS?",
+    answer: "CYBOGLABS fosters an innovation-first culture with collaborative teams, flexible work arrangements (hybrid/remote options), continuous learning opportunities, and a focus on work-life balance. We believe in empowering our team members to experiment, learn, and grow."
+  },
+  {
+    id: 8,
+    category: "Services",
+    question: "Does CYBOGLABS provide R&D services to other companies?",
+    answer: "Yes, we offer comprehensive R&D services including applied research, experimental development, reverse engineering, technology problem solving, prototyping, and end-to-end product development. Contact us at support@cyboglabs.com to discuss your requirements."
+  },
+  {
+    id: 9,
+    category: "Services",
+    question: "What industries does CYBOGLABS serve?",
+    answer: "We serve multiple industries including hospitality, retail & fashion, maritime & logistics, healthcare & pharmacy, automotive, parking & smart cities, and consumer electronics. Our solutions are designed to solve real-world challenges across these sectors."
+  },
+  {
+    id: 10,
+    category: "Contact",
+    question: "How can I contact CYBOGLABS?",
+    answer: "You can reach us through multiple channels: General inquiries at support@cyboglabs.com, Career-related queries at careers@cyboglabs.com, or use our contact form on the website. You can also chat with CYBOT, our AI assistant, for quick answers."
+  },
+  {
+    id: 11,
+    category: "Contact",
+    question: "Where is CYBOGLABS located?",
+    answer: "CYBOGLABS operates with a hybrid work model. For specific location details or to schedule a meeting, please contact us at support@cyboglabs.com."
+  },
+  {
+    id: 12,
+    category: "Technology",
+    question: "What technologies does CYBOGLABS work with?",
+    answer: "We work with cutting-edge technologies including AI/ML frameworks (PyTorch, TensorFlow), cloud platforms (AWS, GCP, Azure), embedded systems (ARM, ESP32, STM32), containerization (Docker, Kubernetes), and various programming languages (Python, C/C++, JavaScript)."
+  }
+];
 
 export const specialties = [
   {
