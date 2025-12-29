@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { companyInfo } from '../data/mockData';
@@ -9,12 +9,13 @@ const HeroSection = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const maxScroll = 400;
+      const maxScroll = 500;
       const progress = Math.min(scrollY / maxScroll, 1);
       setScrollProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -25,72 +26,56 @@ const HeroSection = () => {
     }
   };
 
-  // Calculate individual part positions based on scroll
-  const getPartStyle = (partIndex, totalParts) => {
-    const threshold = partIndex / totalParts;
-    const partProgress = Math.min(Math.max((scrollProgress - threshold * 0.5) / (1 / totalParts), 0), 1);
+  // Smooth easing function
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+  // Calculate part animation with staggered timing
+  const getPartStyle = (partIndex, totalParts, direction = 'down') => {
+    const staggerDelay = 0.12;
+    const partStart = partIndex * staggerDelay;
+    const partEnd = partStart + 0.5;
     
-    const translateY = (1 - partProgress) * (80 + partIndex * 30);
-    const opacity = 0.3 + partProgress * 0.7;
-    const scale = 0.85 + partProgress * 0.15;
+    let partProgress = 0;
+    if (scrollProgress > partStart) {
+      partProgress = Math.min((scrollProgress - partStart) / (partEnd - partStart), 1);
+    }
+    
+    const easedProgress = easeOutCubic(partProgress);
+    
+    let translateX = 0;
+    let translateY = 0;
+    const distance = 150;
+    
+    switch (direction) {
+      case 'down':
+        translateY = (1 - easedProgress) * -distance;
+        break;
+      case 'up':
+        translateY = (1 - easedProgress) * distance;
+        break;
+      case 'left':
+        translateX = (1 - easedProgress) * distance;
+        break;
+      case 'right':
+        translateX = (1 - easedProgress) * -distance;
+        break;
+      default:
+        translateY = (1 - easedProgress) * -distance;
+    }
     
     return {
-      transform: `translateY(${translateY}px) scale(${scale})`,
-      opacity: opacity,
-      transition: 'transform 0.2s ease-out, opacity 0.2s ease-out',
+      transform: `translate(${translateX}px, ${translateY}px)`,
+      opacity: easedProgress,
+      transition: 'none',
     };
   };
 
+  const isFullyAssembled = scrollProgress > 0.85;
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
-      {/* Cloudy Gradient Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Main cloudy gradient layer */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(ellipse 80% 50% at 20% 40%, rgba(251, 207, 232, 0.4) 0%, transparent 50%),
-              radial-gradient(ellipse 60% 40% at 70% 30%, rgba(254, 215, 170, 0.35) 0%, transparent 50%),
-              radial-gradient(ellipse 70% 50% at 40% 60%, rgba(252, 231, 243, 0.3) 0%, transparent 50%),
-              radial-gradient(ellipse 50% 30% at 80% 70%, rgba(254, 243, 199, 0.25) 0%, transparent 50%),
-              radial-gradient(ellipse 90% 60% at 10% 80%, rgba(249, 168, 212, 0.2) 0%, transparent 50%)
-            `,
-          }}
-        />
-        
-        {/* Animated floating clouds */}
-        <div 
-          className="absolute w-[600px] h-[400px] md:w-[800px] md:h-[500px] rounded-full blur-3xl opacity-40 animate-pulse"
-          style={{
-            background: 'linear-gradient(135deg, rgba(251, 207, 232, 0.5) 0%, rgba(254, 215, 170, 0.3) 100%)',
-            top: '10%',
-            left: '-10%',
-            animationDuration: '8s',
-          }}
-        />
-        <div 
-          className="absolute w-[500px] h-[350px] md:w-[700px] md:h-[450px] rounded-full blur-3xl opacity-30 animate-pulse"
-          style={{
-            background: 'linear-gradient(225deg, rgba(254, 243, 199, 0.5) 0%, rgba(252, 231, 243, 0.3) 100%)',
-            top: '30%',
-            right: '-5%',
-            animationDuration: '10s',
-            animationDelay: '2s',
-          }}
-        />
-        <div 
-          className="absolute w-[400px] h-[300px] md:w-[600px] md:h-[400px] rounded-full blur-3xl opacity-25 animate-pulse"
-          style={{
-            background: 'linear-gradient(180deg, rgba(249, 168, 212, 0.4) 0%, rgba(254, 215, 170, 0.2) 100%)',
-            bottom: '10%',
-            left: '20%',
-            animationDuration: '12s',
-            animationDelay: '4s',
-          }}
-        />
-        
-        {/* Subtle grid pattern overlay */}
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-neutral-50">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0">
         <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -108,17 +93,12 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between">
           {/* Left Side - Text Content */}
           <div className="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
-            {/* Main Heading */}
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-neutral-900 mb-4 tracking-tight">
               {companyInfo.name}
             </h1>
-
-            {/* Tagline */}
             <p className="text-xl md:text-2xl lg:text-3xl text-neutral-500 mb-10">
               Technology & Life
             </p>
-
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Link
                 to="/#contact"
@@ -138,170 +118,167 @@ const HeroSection = () => {
 
           {/* Right Side - Satellite Assembly */}
           <div className="lg:w-1/2 flex items-center justify-center">
-            <div className="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[420px]">
-              {/* Satellite Main Body - Core Module */}
+            <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px]">
+              
+              {/* Main Satellite Body - comes from top */}
               <div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                style={getPartStyle(0, 8)}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+                style={getPartStyle(0, 7, 'down')}
               >
-                <div className="w-20 h-28 md:w-24 md:h-32 lg:w-28 lg:h-36 bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-400 rounded-sm shadow-lg relative">
-                  {/* Main Body Frame */}
-                  <div className="absolute inset-1.5 border-2 border-neutral-500/40 rounded-sm" />
-                  {/* Top Sensor Array */}
-                  <div className="absolute top-3 left-1/2 -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 bg-neutral-800 rounded-full border-2 border-neutral-500 shadow-inner">
-                    <div className="absolute inset-2 bg-gradient-to-br from-neutral-600 to-neutral-900 rounded-full" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50" />
-                  </div>
-                  {/* Middle Control Panel */}
-                  <div className="absolute top-14 md:top-16 left-1/2 -translate-x-1/2 w-12 md:w-14 h-6 bg-neutral-600 rounded-sm border border-neutral-500">
-                    <div className="flex justify-center items-center gap-1 pt-1">
-                      <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-                      <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
-                      <div className="w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }} />
+                <div className="relative">
+                  {/* Main chassis */}
+                  <div className="w-16 h-24 md:w-20 md:h-28 lg:w-24 lg:h-32 bg-gradient-to-b from-slate-200 via-slate-300 to-slate-400 rounded-md shadow-xl border border-slate-300">
+                    {/* Top sensor dome */}
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 bg-gradient-to-b from-slate-600 to-slate-800 rounded-full border-2 border-slate-500 shadow-lg">
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 animate-pulse" />
                     </div>
-                  </div>
-                  {/* Bottom Vent */}
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-10 md:w-12 h-3 bg-neutral-600 rounded-sm">
-                    <div className="flex justify-around pt-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <div key={i} className="w-0.5 h-2 bg-neutral-800" />
-                      ))}
+                    {/* Panel lines */}
+                    <div className="absolute top-8 left-2 right-2 h-px bg-slate-400" />
+                    <div className="absolute top-14 left-2 right-2 h-px bg-slate-400" />
+                    <div className="absolute top-20 left-2 right-2 h-px bg-slate-400" />
+                    {/* Status lights */}
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                      <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Left Solar Panel */}
+              {/* Left Solar Panel - comes from left */}
               <div
-                className="absolute left-2 lg:left-4 top-1/2 -translate-y-1/2"
-                style={getPartStyle(1, 8)}
+                className="absolute left-4 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-0"
+                style={getPartStyle(1, 7, 'left')}
               >
                 <div className="flex items-center">
-                  {/* Panel Arm */}
-                  <div className="w-4 md:w-6 h-2 bg-gradient-to-r from-neutral-500 to-neutral-400 rounded-sm" />
-                  {/* Solar Panel */}
-                  <div className="w-20 h-14 md:w-24 md:h-16 lg:w-28 lg:h-20 bg-gradient-to-r from-indigo-800 via-blue-700 to-indigo-800 rounded-sm shadow-lg border border-blue-500/30 relative overflow-hidden">
-                    <div className="absolute inset-0.5 grid grid-cols-4 grid-rows-4 gap-px">
-                      {[...Array(16)].map((_, i) => (
-                        <div key={i} className="bg-blue-600 rounded-sm border border-blue-400/20" />
+                  {/* Solar panel */}
+                  <div className="w-20 h-12 md:w-28 md:h-16 lg:w-32 lg:h-20 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 rounded shadow-lg border border-blue-600/50 relative overflow-hidden">
+                    {/* Solar cells grid */}
+                    <div className="absolute inset-1 grid grid-cols-6 grid-rows-4 gap-px">
+                      {[...Array(24)].map((_, i) => (
+                        <div key={i} className="bg-blue-600 border border-blue-500/30" />
                       ))}
                     </div>
-                    {/* Reflective shine */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent" />
                   </div>
+                  {/* Connector arm */}
+                  <div className="w-4 md:w-6 lg:w-8 h-2 bg-gradient-to-r from-slate-400 to-slate-500 rounded-r" />
                 </div>
               </div>
 
-              {/* Right Solar Panel */}
+              {/* Right Solar Panel - comes from right */}
               <div
-                className="absolute right-2 lg:right-4 top-1/2 -translate-y-1/2"
-                style={getPartStyle(2, 8)}
+                className="absolute right-4 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-0"
+                style={getPartStyle(2, 7, 'right')}
               >
                 <div className="flex items-center flex-row-reverse">
-                  {/* Panel Arm */}
-                  <div className="w-4 md:w-6 h-2 bg-gradient-to-l from-neutral-500 to-neutral-400 rounded-sm" />
-                  {/* Solar Panel */}
-                  <div className="w-20 h-14 md:w-24 md:h-16 lg:w-28 lg:h-20 bg-gradient-to-l from-indigo-800 via-blue-700 to-indigo-800 rounded-sm shadow-lg border border-blue-500/30 relative overflow-hidden">
-                    <div className="absolute inset-0.5 grid grid-cols-4 grid-rows-4 gap-px">
-                      {[...Array(16)].map((_, i) => (
-                        <div key={i} className="bg-blue-600 rounded-sm border border-blue-400/20" />
+                  {/* Solar panel */}
+                  <div className="w-20 h-12 md:w-28 md:h-16 lg:w-32 lg:h-20 bg-gradient-to-l from-blue-900 via-blue-800 to-blue-700 rounded shadow-lg border border-blue-600/50 relative overflow-hidden">
+                    {/* Solar cells grid */}
+                    <div className="absolute inset-1 grid grid-cols-6 grid-rows-4 gap-px">
+                      {[...Array(24)].map((_, i) => (
+                        <div key={i} className="bg-blue-600 border border-blue-500/30" />
                       ))}
                     </div>
-                    {/* Reflective shine */}
-                    <div className="absolute inset-0 bg-gradient-to-bl from-white/10 via-transparent to-transparent" />
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-bl from-white/20 via-transparent to-transparent" />
                   </div>
+                  {/* Connector arm */}
+                  <div className="w-4 md:w-6 lg:w-8 h-2 bg-gradient-to-l from-slate-400 to-slate-500 rounded-l" />
                 </div>
               </div>
 
-              {/* Top Communication Antenna */}
+              {/* Top Antenna - comes from top */}
               <div
-                className="absolute left-1/2 top-4 md:top-6 -translate-x-1/2"
-                style={getPartStyle(3, 8)}
+                className="absolute left-1/2 top-12 md:top-14 lg:top-16 -translate-x-1/2 z-20"
+                style={getPartStyle(3, 7, 'down')}
               >
-                <div className="relative flex flex-col items-center">
-                  {/* Antenna Mast */}
-                  <div className="w-1.5 h-10 md:h-12 bg-gradient-to-b from-neutral-400 to-neutral-500 rounded-sm" />
-                  {/* Antenna Head */}
-                  <div className="absolute -top-2 w-4 h-4 md:w-5 md:h-5 bg-gradient-to-br from-neutral-300 to-neutral-500 rounded-full border border-neutral-400 shadow-md">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
-                  </div>
+                <div className="flex flex-col items-center">
+                  {/* Antenna tip */}
+                  <div className="w-4 h-4 md:w-5 md:h-5 bg-gradient-to-b from-red-500 to-red-600 rounded-full shadow-md border border-red-400 animate-pulse" />
+                  {/* Antenna mast */}
+                  <div className="w-1 h-8 md:h-10 lg:h-12 bg-gradient-to-b from-slate-300 to-slate-500" />
                 </div>
               </div>
 
-              {/* Satellite Dish */}
+              {/* Satellite Dish - comes from right */}
               <div
-                className="absolute right-6 md:right-8 lg:right-12 top-20 md:top-24"
-                style={getPartStyle(4, 8)}
+                className="absolute right-16 md:right-20 lg:right-24 top-24 md:top-28 lg:top-32 z-20"
+                style={getPartStyle(4, 7, 'right')}
               >
                 <div className="relative">
-                  {/* Dish Arm */}
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 w-1 h-4 bg-neutral-500" />
+                  {/* Dish mount */}
+                  <div className="w-1 h-5 bg-slate-500 absolute -bottom-1 left-1/2 -translate-x-1/2" />
                   {/* Dish */}
-                  <div className="w-10 h-10 md:w-12 md:h-12 border-4 border-neutral-400 rounded-full bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-400 shadow-lg relative">
-                    <div className="absolute inset-0 rounded-full border-2 border-neutral-300/50" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-neutral-600 rounded-full" />
+                  <div className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-gradient-to-br from-slate-200 via-slate-300 to-slate-400 border-2 border-slate-400 shadow-lg relative">
+                    <div className="absolute inset-2 rounded-full border border-slate-300" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-slate-600 rounded-full" />
                   </div>
                 </div>
               </div>
 
-              {/* Secondary Antenna - Left Side */}
+              {/* Secondary Antenna - comes from left */}
               <div
-                className="absolute left-8 md:left-10 lg:left-14 top-20 md:top-24"
-                style={getPartStyle(5, 8)}
+                className="absolute left-16 md:left-20 lg:left-24 top-24 md:top-28 lg:top-32 z-20"
+                style={getPartStyle(5, 7, 'left')}
               >
-                <div className="relative">
-                  <div className="w-1 h-6 md:h-8 bg-neutral-500 rounded-sm" />
-                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-400 rounded-full border border-neutral-500" />
+                <div className="flex flex-col items-center">
+                  <div className="w-3 h-3 bg-slate-500 rounded-full" />
+                  <div className="w-0.5 h-6 md:h-8 bg-slate-400" />
                 </div>
               </div>
 
-              {/* Thruster Module - Bottom */}
+              {/* Thruster Module - comes from bottom */}
               <div
-                className="absolute left-1/2 bottom-8 md:bottom-10 -translate-x-1/2"
-                style={getPartStyle(6, 8)}
+                className="absolute left-1/2 bottom-16 md:bottom-20 lg:bottom-24 -translate-x-1/2 z-20"
+                style={getPartStyle(6, 7, 'up')}
               >
-                <div className="flex items-end space-x-1.5 md:space-x-2">
-                  {/* Left Thruster */}
-                  <div className="w-4 h-7 md:w-5 md:h-8 bg-gradient-to-b from-neutral-500 via-neutral-600 to-amber-600 rounded-b-full relative">
-                    <div className="absolute inset-x-1 top-1 h-2 bg-neutral-700 rounded-sm" />
+                <div className="flex items-end gap-1">
+                  {/* Left thruster */}
+                  <div className="w-3 h-6 md:w-4 md:h-8 bg-gradient-to-b from-slate-500 to-slate-600 rounded-b-full relative">
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-1 bg-slate-700 rounded-b" />
                   </div>
-                  {/* Center Thruster (main) */}
-                  <div className="w-5 h-9 md:w-6 md:h-10 bg-gradient-to-b from-neutral-500 via-neutral-600 to-orange-500 rounded-b-full relative">
-                    <div className="absolute inset-x-1 top-1 h-2 bg-neutral-700 rounded-sm" />
+                  {/* Center thruster (main) */}
+                  <div className="w-4 h-8 md:w-5 md:h-10 bg-gradient-to-b from-slate-500 to-slate-600 rounded-b-full relative">
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-1 bg-slate-700 rounded-b" />
                   </div>
-                  {/* Right Thruster */}
-                  <div className="w-4 h-7 md:w-5 md:h-8 bg-gradient-to-b from-neutral-500 via-neutral-600 to-amber-600 rounded-b-full relative">
-                    <div className="absolute inset-x-1 top-1 h-2 bg-neutral-700 rounded-sm" />
+                  {/* Right thruster */}
+                  <div className="w-3 h-6 md:w-4 md:h-8 bg-gradient-to-b from-slate-500 to-slate-600 rounded-b-full relative">
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-1 bg-slate-700 rounded-b" />
                   </div>
                 </div>
-                {/* Thruster Glow Effect */}
-                {scrollProgress > 0.5 && (
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex space-x-2">
-                    <div className="w-3 h-4 bg-gradient-to-b from-orange-400 to-transparent rounded-b-full blur-sm opacity-60 animate-pulse" />
-                    <div className="w-4 h-6 bg-gradient-to-b from-orange-500 to-transparent rounded-b-full blur-sm opacity-70 animate-pulse" />
-                    <div className="w-3 h-4 bg-gradient-to-b from-orange-400 to-transparent rounded-b-full blur-sm opacity-60 animate-pulse" />
+                
+                {/* Thruster flames when assembled */}
+                {isFullyAssembled && (
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-1">
+                    <div className="w-2 h-5 bg-gradient-to-b from-orange-500 via-yellow-400 to-transparent rounded-b-full blur-[2px] animate-pulse opacity-80" />
+                    <div className="w-3 h-7 bg-gradient-to-b from-orange-500 via-yellow-400 to-transparent rounded-b-full blur-[2px] animate-pulse opacity-90" />
+                    <div className="w-2 h-5 bg-gradient-to-b from-orange-500 via-yellow-400 to-transparent rounded-b-full blur-[2px] animate-pulse opacity-80" />
                   </div>
                 )}
               </div>
 
-              {/* Star Tracker Module */}
-              <div
-                className="absolute left-6 md:left-8 bottom-20 md:bottom-24"
-                style={getPartStyle(7, 8)}
-              >
-                <div className="w-6 h-8 md:w-7 md:h-9 bg-gradient-to-b from-neutral-400 to-neutral-500 rounded-sm shadow-md relative">
-                  <div className="absolute top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-700 rounded-full">
-                    <div className="absolute inset-0.5 bg-gradient-to-br from-neutral-600 to-neutral-800 rounded-full" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Assembly Progress Glow */}
-              {scrollProgress > 0.8 && (
+              {/* Assembly complete glow effect */}
+              {isFullyAssembled && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-40 h-40 md:w-48 md:h-48 bg-blue-400/5 rounded-full blur-3xl animate-pulse" />
+                  <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-blue-400/10 rounded-full blur-3xl animate-pulse" />
                 </div>
               )}
+
+              {/* Assembly progress indicator */}
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                <div className="w-32 h-1 bg-neutral-200 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-rose-400 to-amber-400 rounded-full transition-all duration-100"
+                    style={{ width: `${Math.min(scrollProgress * 120, 100)}%` }}
+                  />
+                </div>
+                <span className="text-xs text-neutral-400 mt-2 font-mono">
+                  {Math.min(Math.round(scrollProgress * 120), 100)}% assembled
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -312,7 +289,7 @@ const HeroSection = () => {
         onClick={scrollToAbout}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 text-neutral-400 hover:text-neutral-900 transition-colors duration-300 cursor-pointer"
       >
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
+        <span className="text-xs uppercase tracking-widest">Scroll to assemble</span>
         <ChevronDown size={20} className="animate-bounce" />
       </button>
     </section>
