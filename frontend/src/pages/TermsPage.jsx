@@ -4,6 +4,7 @@ import { ArrowLeft, FileText, Shield, AlertTriangle, Scale } from 'lucide-react'
 import { termsAndConditions } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CybotChatbot from '../components/CybotChatbot';
 
 const TermsPage = () => {
   return (
