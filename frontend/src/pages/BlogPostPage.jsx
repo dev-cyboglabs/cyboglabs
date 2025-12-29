@@ -205,6 +205,7 @@ const BlogPostPage = () => {
       )}
 
       <Footer />
+      <CybotChatbot />
     </div>
   );
 };
