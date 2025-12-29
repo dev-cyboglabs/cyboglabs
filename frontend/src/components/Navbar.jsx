@@ -37,7 +37,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-white/80 backdrop-blur-xl shadow-sm'
+          ? 'bg-white/90 backdrop-blur-xl shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -49,16 +49,16 @@ const Navbar = () => {
             className="flex items-center space-x-2 group"
           >
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-neutral-900 to-neutral-700 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
-                <span className="text-white font-bold text-lg">C</span>
+              <div className="flex flex-col leading-none">
+                <span className="text-lg font-bold tracking-wider text-neutral-900">CYBOG</span>
+                <span className="text-lg font-bold tracking-wider text-neutral-900">LABS</span>
               </div>
-              <div className="absolute -inset-1 bg-gradient-to-br from-neutral-900/20 to-neutral-700/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute -right-3 top-0 flex flex-col space-y-0.5">
+                <div className="w-0.5 h-3 bg-neutral-900"></div>
+                <div className="w-0.5 h-3 bg-neutral-900"></div>
+                <div className="w-0.5 h-3 bg-neutral-900"></div>
+              </div>
             </div>
-            <span className={`font-semibold text-lg tracking-tight transition-colors duration-300 ${
-              scrolled ? 'text-neutral-900' : 'text-white'
-            }`}>
-              CYBOGLABS
-            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -68,30 +68,17 @@ const Navbar = () => {
                 key={link.name}
                 to={link.path}
                 onClick={() => handleNavClick(link.path)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
-                  scrolled
-                    ? 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
-                }`}
+                className="px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors duration-300"
               >
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="/#contact"
-              onClick={() => handleNavClick('/#contact')}
-              className="ml-4 px-6 py-2.5 bg-neutral-900 text-white text-sm font-medium rounded-full hover:bg-neutral-800 transition-all duration-300 hover:shadow-lg hover:shadow-neutral-900/25"
-            >
-              Get in Touch
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors duration-300 ${
-              scrolled ? 'text-neutral-900 hover:bg-neutral-100' : 'text-white hover:bg-white/10'
-            }`}
+            className="lg:hidden p-2 rounded-lg text-neutral-900 hover:bg-neutral-100 transition-colors duration-300"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
