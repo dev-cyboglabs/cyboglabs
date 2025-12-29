@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, MapPin, Clock, Briefcase, Users, Zap, Heart } fr
 import { careers } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CybotChatbot from '../components/CybotChatbot';
 
 const CareersPage = () => {
   const benefits = [
