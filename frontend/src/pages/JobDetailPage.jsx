@@ -438,6 +438,7 @@ const JobDetailPage = () => {
       )}
 
       <Footer />
+      <CybotChatbot />
     </div>
   );
 };
