@@ -6,6 +6,7 @@ import AboutSection from '../components/AboutSection';
 import ProjectsSection from '../components/ProjectsSection';
 import BlogPreview from '../components/BlogPreview';
 import ContactSection from '../components/ContactSection';
+import EthicsComplianceSection from '../components/EthicsComplianceSection';
 import CybotChatbot from '../components/CybotChatbot';
 
 const HomePage = () => {
@@ -18,6 +19,7 @@ const HomePage = () => {
         <ProjectsSection />
         <BlogPreview />
         <ContactSection />
+        <EthicsComplianceSection />
       </main>
       <Footer />
       <CybotChatbot />
