@@ -166,8 +166,8 @@ const Footer = () => {
             <p className="text-neutral-500 text-sm">
               © {currentYear} CYBOGLABS. All rights reserved.
             </p>
-            <p className="text-neutral-500 text-sm">
-              Engineering Tomorrow's Breakthroughs — Where Innovation Meets Excellence
+            <p className="text-neutral-500 text-sm uppercase tracking-wider">
+              Technology & Life
             </p>
           </div>
         </div>
