@@ -38,7 +38,7 @@ const ProjectsSection = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="w-8 h-1 bg-gradient-to-r from-rose-400 to-amber-400 rounded-full" />
-            <span className="text-neutral-500 text-sm uppercase tracking-widest font-medium">
+            <span className="text-neutral-500 text-2xl uppercase tracking-widest font-medium">
               Our Work
             </span>
             <div className="w-8 h-1 bg-gradient-to-r from-amber-400 to-rose-400 rounded-full" />
@@ -55,10 +55,16 @@ const ProjectsSection = () => {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {currentProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500"
-            >
+           <div
+  key={project.id}
+  className="group relative bg-white overflow-hidden
+             border-2 border-gray-200
+             shadow-[4px_4px_0_#e2e2e280]
+             transition-all duration-300
+             hover:shadow-[4px_4px_0_#e2e2e260]
+             hover:translate-x-[2px] hover:translate-y-[2px]"
+>
+
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -66,20 +72,12 @@ const ProjectsSection = () => {
                   alt={project.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-neutral-900/20 to-transparent" />
+                { /* black Overlay for project logo */}
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-neutral-900/20 to-transparent" /> */}  
                 
                 {/* Status Badge */}
-                <div className="absolute top-4 left-4">
-                  <span 
-                    className="px-3 py-1 text-white text-xs font-medium rounded-full"
-                    style={{
-                      background: 'linear-gradient(135deg, #f472b6 0%, #fbbf24 100%)',
-                    }}
-                  >
-                    {project.status}
-                  </span>
-                </div>
-                
+<div className="absolute top-4 left-4"> <span className="px-3 py-1 text-white text-xs font-medium rounded-full" style={{ background: 'linear-gradient(135deg, #f472b6 0%, #fbbf24 100%)', }} > {project.status} </span> </div>
+
                 {/* Project Name Overlay */}
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-white/70 text-sm mb-1">{project.name}</p>
@@ -158,7 +156,7 @@ const ProjectsSection = () => {
           onClick={closeProjectModal}
         >
           <div 
-            className="relative bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300"
+            className="relative bg-white max-w-3xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -178,7 +176,9 @@ const ProjectsSection = () => {
                   alt={selectedProject.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+                 {/* Individual Project Image Overlay */}
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" /> */}
                 
                 {/* Status Badge */}
                 <div className="absolute top-4 left-4">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import logoDark from '../assets/logo-dark.svg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,11 +27,21 @@ const Navbar = () => {
 
   const handleNavClick = (path) => {
     setIsOpen(false);
-    if (path.includes('#') && location.pathname === '/') {
-      const element = document.querySelector(path.replace('/', ''));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+    if (path.includes('#')) {
+      // Handle hash links
+      if (location.pathname === '/') {
+        // Already on home page - scroll to section
+        const element = document.querySelector(path.replace('/', ''));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // Navigate to home page first, then scroll
+        window.location.href = path;
       }
+    } else {
+      // Handle regular navigation - scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -49,17 +60,7 @@ const Navbar = () => {
             to="/"
             className="flex items-center space-x-2 group"
           >
-            <div className="relative">
-              <div className="flex flex-col leading-none">
-                <span className="text-lg font-bold tracking-wider text-neutral-900">CYBOG</span>
-                <span className="text-lg font-bold tracking-wider text-neutral-900">LABS</span>
-              </div>
-              <div className="absolute -right-3 top-0 flex flex-col space-y-0.5">
-                <div className="w-0.5 h-3 bg-neutral-900"></div>
-                <div className="w-0.5 h-3 bg-neutral-900"></div>
-                <div className="w-0.5 h-3 bg-neutral-900"></div>
-              </div>
-            </div>
+            <img src={logoDark} alt="CYBOGLABS" className="h-12 lg:h-14" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -69,7 +70,7 @@ const Navbar = () => {
                 key={link.name}
                 to={link.path}
                 onClick={() => handleNavClick(link.path)}
-                className="px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors duration-300"
+                className="px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-500 transition-colors duration-300"
               >
                 {link.name}
               </Link>
@@ -98,7 +99,7 @@ const Navbar = () => {
               key={link.name}
               to={link.path}
               onClick={() => handleNavClick(link.path)}
-              className="block px-4 py-3 text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100 rounded-lg transition-colors duration-200"
+              className="block px-4 py-3 text-neutral-700 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors duration-200"
             >
               {link.name}
             </Link>

@@ -86,6 +86,13 @@ const HeroSection = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Link
                   to="/#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   className="group px-8 py-3.5 bg-neutral-900 text-white text-base font-medium rounded-none hover:bg-neutral-800 transition-all duration-300 flex items-center space-x-2 uppercase tracking-wider"
                 >
                   <span>Get in Touch</span>
@@ -93,6 +100,13 @@ const HeroSection = () => {
                 </Link>
                 <Link
                   to="/#projects"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#projects');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   className="px-8 py-3.5 border-2 border-neutral-900 text-neutral-900 text-base font-medium rounded-none hover:bg-neutral-900 hover:text-white transition-all duration-300 uppercase tracking-wider"
                 >
                   Our Works

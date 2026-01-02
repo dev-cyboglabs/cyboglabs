@@ -2,15 +2,17 @@ from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
+from pathlib import Path
 import os
 import logging
-from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict, EmailStr
-from typing import List, Optional
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
+from typing import Optional, List
 import uuid
 from datetime import datetime, timezone
-from openai import OpenAI
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -20,89 +22,14 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# OpenAI client with Emergent LLM key
-openai_client = OpenAI(
-    api_key=os.environ.get('EMERGENT_LLM_KEY'),
-    base_url="https://api.emergentmethods.ai/v1"
-)
-
 # Create the main app without a prefix
 app = FastAPI()
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
-# CYBOGLABS Knowledge Base - Company information for CYBOT
-CYBOGLABS_KNOWLEDGE = """
-# CYBOGLABS Company Information
-
-## About CYBOGLABS
-CYBOGLABS is a future-driven R&D powerhouse committed to pushing boundaries and turning visionary ideas into cutting-edge innovations. Our tagline is "Technology & Life". For us, the future isn't something to predict, it's something to create.
-
-## Contact Information
-- Email: support@cyboglabs.com
-- For careers: careers@cyboglabs.com
-
-## Our Vision
-To emerge as the world's leader in R&D, creating long-term innovation that defines the future of technology and enhances human affairs around the globe.
-
-## Our Mission
-- To deliver high-impact R&D solutions that address real-world challenges
-- To foster innovation through collaboration, creativity & technology
-- To empower businesses with scalable, efficient & future-ready solutions
-
-## Our Specialties
-1. **Product-Driven Engineering R&D**: We conduct applied research and experimental development to create original, IP-led technology products.
-2. **AI & Machine Learning Systems**: We design and implement AI and ML models as core components of our products, focusing on real-world applicability, automation, and intelligent decision-making.
-3. **Hardware-Software Co-Development**: We build integrated systems where custom hardware, embedded firmware, and software platforms are developed together to solve complex operational challenges.
-4. **Technology Problem Solving**: We take on difficult, unsolved engineering challenges and translate them into scalable, practical technology solutions through structured experimentation and iteration.
-5. **Experimental Prototyping & Validation**: We rapidly prototype, test, and refine concepts to validate feasibility, performance, and market relevance before moving toward productization.
-6. **End-to-End Product Ownership**: From concept and research to design, development, and IP creation, all core innovation is conceived and built in-house, with manufacturing executed through trusted partners.
-
-## Our Projects
-1. **SpotyTags**: Hospitality-focused automation platform for intelligent tracking and billing of in-room consumables.
-2. **Pixzee.ai**: An AI-driven apparel platform that blends personalization, automation, and digital intelligence into fashion retail.
-3. **PixzeePod**: An AI-powered retail assistant designed to enhance customer interaction and in-store decision support.
-4. **Seabot.ai**: An intelligent marine data platform built to enable real-time monitoring and insights in maritime environments.
-5. **Matrivis**: A digital warehouse intelligence system designed for port and logistics operations to improve visibility and control. Recently selected by IIT Madras for Chennai Port Operations transformation.
-6. **TestRive**: A virtual driving and simulation platform created to evaluate, train, and validate vehicle interaction scenarios.
-7. **Lockfee**: An automated parking compliance solution that enables digital payment and controlled clamp release with minimal manual intervention.
-8. **SpotAxis**: A smart parking assistance platform focused on improving flow, compliance, and operational efficiency in managed parking environments.
-9. **ZepTrack**: An automation platform designed to streamline pharmacy operations and inventory-driven workflows.
-10. **WONDS**: A digital warranty and after-sales platform that simplifies product ownership and service access for end users.
-
-## Career Opportunities
-We are currently hiring for:
-1. **DevOps Engineer** (3-6 years experience) - Infrastructure & Operations
-2. **AI/ML Architect** (5-10 years experience) - Artificial Intelligence
-3. **Cloud Architect** (6-10 years experience) - Cloud Infrastructure
-4. **Hardware & Embedded Systems Engineer** (4-8 years experience) - Hardware Engineering
-
-## Internship Programs
-We offer paid internships in:
-1. AI/ML Research Intern (3-6 months)
-2. Full Stack Development Intern (3-6 months)
-3. Embedded Systems Intern (4-6 months)
-4. Cloud & DevOps Intern (3-6 months)
-
-## Recent News & Events
-- **Matrivis selected by IIT Madras** for the Port Innovation Challenge 2025 to transform Chennai port operations.
-- **India Tech Summit 2025**: CYBOGLABS will showcase innovations at Booth #A-127 in September 2025.
-- **Embedded AI Workshop**: Hands-on TinyML workshop scheduled for October 2025.
-
-## Website Pages
-- Home: /
-- About: /#about
-- Projects: /#projects
-- Blog: /blog
-- Careers: /careers
-- Internships: /internships
-- Events & News: /events-news
-- Contact: /#contact
-- Terms & Conditions: /terms
-- Privacy Policy: /privacy
-"""
-
+# Chatbot now uses database-based answers instead of OpenAI
+logger.info("CYBOT chatbot initialized with database backend")
 
 # Define Models
 class StatusCheck(BaseModel):
@@ -148,8 +75,10 @@ class VisitorResponse(BaseModel):
     success: bool
     visitor_id: str
 
-# Store chat history in memory (for demo - in production use database)
-chat_sessions = {}
+class ChatbotAnswer(BaseModel):
+    keywords: List[str]
+    answer: str
+    category: str = "general"
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
@@ -179,60 +108,15 @@ async def get_status_checks():
 
 @api_router.post("/chat", response_model=ChatResponse)
 async def chat_with_cybot(chat_input: ChatMessage):
-    """CYBOT - AI-powered chatbot for CYBOGLABS"""
+    """CYBOT - Database-powered chatbot for CYBOGLABS"""
     try:
         session_id = chat_input.session_id or str(uuid.uuid4())
+        user_message = chat_input.message.lower().strip()
         
-        # Get or create chat history for this session
-        if session_id not in chat_sessions:
-            chat_sessions[session_id] = []
+        # Find matching answer in database (no chat storage)
+        answer = await find_best_answer(user_message)
         
-        # Add user message to history
-        chat_sessions[session_id].append({
-            "role": "user",
-            "content": chat_input.message
-        })
-        
-        # Keep only last 10 messages to manage context
-        recent_history = chat_sessions[session_id][-10:]
-        
-        # Create system prompt with knowledge base
-        system_prompt = f"""You are CYBOT, the friendly and helpful AI assistant for CYBOGLABS. You help visitors learn about the company, its products, services, career opportunities, and more.
-
-Use the following knowledge base to answer questions accurately. If you don't know something or the information isn't in the knowledge base, politely say so and suggest contacting support@cyboglabs.com.
-
-Be conversational, helpful, and professional. Keep responses concise but informative.
-
-{CYBOGLABS_KNOWLEDGE}
-
-Important guidelines:
-- Always be helpful and friendly
-- For career inquiries, direct them to /careers page or careers@cyboglabs.com
-- For support, direct them to support@cyboglabs.com
-- For internships, mention the /internships page
-- If asked about specific projects, provide details from the knowledge base
-- Keep responses concise (2-3 paragraphs max unless more detail is needed)
-"""
-        
-        messages = [{"role": "system", "content": system_prompt}] + recent_history
-        
-        # Call OpenAI API via Emergent
-        response = openai_client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=messages,
-            max_tokens=500,
-            temperature=0.7
-        )
-        
-        assistant_message = response.choices[0].message.content
-        
-        # Add assistant response to history
-        chat_sessions[session_id].append({
-            "role": "assistant",
-            "content": assistant_message
-        })
-        
-        return ChatResponse(response=assistant_message, session_id=session_id)
+        return ChatResponse(response=answer, session_id=session_id)
         
     except Exception as e:
         logger.error(f"Chat error: {str(e)}")
@@ -240,6 +124,101 @@ Important guidelines:
             response="I apologize, but I'm having trouble processing your request right now. Please try again or contact support@cyboglabs.com for assistance.",
             session_id=chat_input.session_id or str(uuid.uuid4())
         )
+
+async def find_best_answer(user_message: str) -> str:
+    """Find the best matching answer based on keywords"""
+    try:
+        # Get all chatbot answers from database
+        answers = await db.chatbot_answers.find({}).to_list(100)
+        
+        if not answers:
+            # If no answers in database, return default
+            return "Hello! I'm CYBOT, your AI assistant for CYBOGLABS. How can I help you today? You can ask me about our products, services, careers, or anything else!"
+        
+        # Keyword matching logic with improved scoring
+        best_match = None
+        best_score = 0
+        
+        for answer in answers:
+            score = 0
+            keywords = answer.get("keywords", [])
+            user_words = user_message.split()
+            
+            # Check for exact keyword matches (higher score)
+            for keyword in keywords:
+                if keyword.lower() in user_message:
+                    score += 3
+            
+            # Check for partial word matches (lower score)
+            for keyword in keywords:
+                keyword_words = keyword.lower().split()
+                for keyword_word in keyword_words:
+                    if keyword_word in user_words:
+                        score += 1
+            
+            # Bonus for category-specific keywords
+            category = answer.get("category", "")
+            if category == "careers" and any(word in user_message for word in ["career", "job", "work", "hiring"]):
+                score += 2
+            elif category == "products" and any(word in user_message for word in ["product", "service", "project"]):
+                score += 2
+            elif category == "contact" and any(word in user_message for word in ["contact", "email", "reach", "support"]):
+                score += 2
+            elif category == "internships" and any(word in user_message for word in ["intern", "student", "learning"]):
+                score += 2
+            
+            if score > best_score:
+                best_score = score
+                best_match = answer
+        
+        # If we found a good match, return it
+        if best_match and best_score >= 2:
+            return best_match.get("answer", "I'm not sure how to help with that. Please contact support@cyboglabs.com for more assistance.")
+        
+        # Fallback responses for common patterns
+        if any(word in user_message for word in ["hello", "hi", "hey"]):
+            return "Hello! I'm CYBOT, your AI assistant for CYBOGLABS. How can I help you today?"
+        
+        if any(word in user_message for word in ["bye", "goodbye", "thanks"]):
+            return "Thank you for chatting with CYBOT! Have a great day! Feel free to reach out anytime."
+        
+        # Default fallback
+        return "I'm not sure I understand. Could you please rephrase your question? You can ask me about our products, services, careers, or contact information."
+        
+    except Exception as e:
+        logger.error(f"Error finding answer: {str(e)}")
+        return "I'm having trouble finding the right answer. Please try again or contact support@cyboglabs.com for assistance."
+
+@api_router.post("/chatbot-answers")
+async def add_chatbot_answer(answer_data: ChatbotAnswer):
+    """Add a new answer to the chatbot knowledge base"""
+    try:
+        answer_doc = {
+            "id": str(uuid.uuid4()),
+            "keywords": answer_data.keywords,
+            "answer": answer_data.answer,
+            "category": answer_data.category,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+            "updated_at": datetime.now(timezone.utc).isoformat()
+        }
+        
+        await db.chatbot_answers.insert_one(answer_doc)
+        return {"success": True, "message": "Answer added successfully"}
+        
+    except Exception as e:
+        logger.error(f"Error adding answer: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to add answer")
+
+@api_router.get("/chatbot-answers")
+async def get_chatbot_answers():
+    """Get all chatbot answers"""
+    try:
+        answers = await db.chatbot_answers.find({}, {"_id": 0}).to_list(100)
+        return answers
+        
+    except Exception as e:
+        logger.error(f"Error getting answers: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to get answers")
 
 @api_router.post("/contact", response_model=EmailResponse)
 async def submit_contact(contact: EmailContact):

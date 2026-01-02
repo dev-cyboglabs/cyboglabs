@@ -39,7 +39,7 @@ const PrivacyPage = () => {
       </section>
 
       {/* Quick Links */}
-      <section className="py-8 bg-neutral-50 border-b border-neutral-200 sticky top-16 lg:top-20 z-40">
+      {/* <section className="py-8 bg-neutral-50 border-b border-neutral-200 sticky top-16 lg:top-20 z-40">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="flex items-center space-x-2 overflow-x-auto pb-2">
             <span className="text-neutral-500 text-sm whitespace-nowrap">Jump to:</span>
@@ -54,7 +54,7 @@ const PrivacyPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Content */}
       <section className="py-16 lg:py-24">

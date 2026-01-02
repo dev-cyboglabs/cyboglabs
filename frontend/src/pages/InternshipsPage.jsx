@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, MapPin, Clock, GraduationCap, CheckCircle, Send, X, Upload, Briefcase } from 'lucide-react';
+import { ArrowLeft, ArrowRight, MapPin, Clock, GraduationCap, CheckCircle, Send, X, Upload, Briefcase, Code, Users, Calendar, Award, BriefcaseIcon, Network } from 'lucide-react';
 import { internships } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -64,12 +64,12 @@ const InternshipsPage = () => {
   };
 
   const benefits = [
-    "Hands-on experience with real projects",
-    "Mentorship from industry experts",
-    "Flexible work arrangements",
-    "Certificate of completion",
-    "Pre-placement opportunity",
-    "Networking with professionals"
+    { text: "Hands-on experience with real projects", icon: Code },
+    { text: "Mentorship from industry experts", icon: Users },
+    { text: "Flexible work arrangements", icon: Calendar },
+    { text: "Certificate of completion", icon: Award },
+    { text: "Pre-placement opportunity", icon: BriefcaseIcon },
+    { text: "Networking with professionals", icon: Network }
   ];
 
   return (
@@ -141,8 +141,8 @@ const InternshipsPage = () => {
                 key={index}
                 className="p-4 bg-white rounded-xl border border-neutral-200 text-center hover:shadow-md transition-all duration-300"
               >
-                <CheckCircle size={24} className="mx-auto mb-2 text-green-500" />
-                <p className="text-sm text-neutral-700">{benefit}</p>
+                <benefit.icon size={24} className="mx-auto mb-2 text-orange-500" />
+                <p className="text-sm text-neutral-700">{benefit.text}</p>
               </div>
             ))}
           </div>

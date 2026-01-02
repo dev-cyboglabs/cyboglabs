@@ -19,7 +19,7 @@ const AboutSection = () => {
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-3 mb-8">
             <div className="w-8 h-1 bg-gradient-to-r from-rose-400 to-amber-400 rounded-full" />
-            <span className="text-neutral-500 text-sm uppercase tracking-widest font-medium">
+            <span className="text-neutral-500 text-2xl uppercase tracking-widest font-medium">
               Who We Are
             </span>
             <div className="w-8 h-1 bg-gradient-to-r from-amber-400 to-rose-400 rounded-full" />
@@ -41,21 +41,37 @@ const AboutSection = () => {
             </span>.
           </p>
 
-          {/* Vision */}
-          <div className="mt-16 mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6">Our Vision</h3>
-            <p className="text-lg text-neutral-600 leading-relaxed max-w-3xl mx-auto">
-              {companyInfo.vision}
-            </p>
-          </div>
+          {/* Vision & Mission - Enhanced Design */}
+         <div className="mt-16 grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+  {/* Vision Card */}
+  <div className="relative bg-white border border-gray-900 shadow-[0.0em_0.0em_0_rgba(0,0,0,0.5)] hover:shadow-[0.4em_0.4em_0_rgba(0,0,0,0.6)] transition-all duration-300 transform hover:-translate-x-1 hover:-translate-y-1">
+    <div className="px-6 py-4 border-b border-gray-900 font-bold text-xl text-gray-900">
+      Our Vision
+    </div>
+    <div className="p-6 text-gray-800">
+      <p>{companyInfo.vision}</p>
+      <div className="flex items-center gap-2 text-gray-900 text-sm font-medium mt-4">
+        <span className="w-2 h-2 bg-gray-900 rounded-full animate-pulse"></span>
+        Future-Driven Innovation
+      </div>
+    </div>
+  </div>
 
-          {/* Mission */}
-          <div className="mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6">Our Mission</h3>
-            <p className="text-lg text-neutral-600 leading-relaxed max-w-3xl mx-auto">
-              {companyInfo.mission}
-            </p>
-          </div>
+  {/* Mission Card */}
+  <div className="relative bg-white border border-gray-900 shadow-[0.0em_0.0em_0_rgba(0,0,0,0.5)] hover:shadow-[0.4em_0.4em_0_rgba(0,0,0,0.6)] transition-all duration-300 transform hover:-translate-x-1 hover:-translate-y-1">
+    <div className="px-6 py-4 border-b border-gray-900 font-bold text-xl text-gray-900">
+      Our Mission
+    </div>
+    <div className="p-6 text-gray-800">
+      <p>{companyInfo.mission}</p>
+      <div className="flex items-center gap-2 text-gray-900 text-sm font-medium mt-4">
+        <span className="w-2 h-2 bg-gray-900 rounded-full animate-pulse"></span>
+        Impact-Driven Solutions
+      </div>
+    </div>
+  </div>
+</div>
+          
         </div>
       </div>
 
@@ -68,10 +84,10 @@ const AboutSection = () => {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
               Our Specialities
             </h2>
-            <p className="text-white/80 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-900/80 text-lg max-w-2xl mx-auto">
               Comprehensive R&D capabilities driving innovation across multiple domains
             </p>
           </div>

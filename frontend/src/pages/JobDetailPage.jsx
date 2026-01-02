@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, MapPin, Clock, Briefcase, CheckCircle, Send, X, Upload } from 'lucide-react';
+import { ArrowLeft, MapPin, Clock, Briefcase, CheckCircle, Send, X, Upload, Check } from 'lucide-react';
 import { careers } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -11,6 +11,7 @@ const JobDetailPage = () => {
   const job = careers.find((j) => j.id === parseInt(id));
   const [showApplicationModal, setShowApplicationModal] = useState(false);
   const [applicationSubmitted, setApplicationSubmitted] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -52,12 +53,45 @@ const JobDetailPage = () => {
     setFormData(prev => ({ ...prev, resume: file }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate submission
-    setTimeout(() => {
-      setApplicationSubmitted(true);
-    }, 1000);
+    try {
+      const applicationData = {
+        name: formData.fullName,
+        email: formData.email,
+        subject: `Job Application: ${job.title}`,
+        message: `Phone: ${formData.phone}\nExperience: ${formData.experience}\nLinkedIn: ${formData.linkedin}\nPortfolio: ${formData.portfolio}\nCover Letter: ${formData.coverLetter}\nResume: ${formData.resume?.name || 'Not uploaded'}`,
+        type: 'careers'
+      };
+      
+      console.log('Submitting application:', applicationData);
+      
+      // Submit to backend
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const response = await fetch(`${BACKEND_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(applicationData),
+      });
+      
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+      
+      const result = await response.json();
+      console.log('Response data:', result);
+      
+      if (response.ok) {
+        setApplicationSubmitted(true);
+      } else {
+        console.error('Backend error:', result);
+        alert(`Failed to submit application: ${result.detail || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      alert(`Failed to submit application: ${error.message}`);
+    }
   };
 
   const closeModal = () => {
@@ -244,10 +278,25 @@ const JobDetailPage = () => {
                     Know someone perfect for this role? Share this opportunity!
                   </p>
                   <button 
-                    onClick={() => navigator.clipboard.writeText(window.location.href)}
+                    onClick={() => {
+                      const url = window.location.href;
+                      navigator.clipboard.writeText(url).then(() => {
+                        setLinkCopied(true);
+                        setTimeout(() => setLinkCopied(false), 2000);
+                      }).catch(() => {
+                        // Silent fallback
+                      });
+                    }}
                     className="w-full px-4 py-2.5 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 transition-colors duration-300"
                   >
-                    Copy Link
+                    {linkCopied ? (
+                      <span className="flex items-center justify-center space-x-2">
+                        <Check size={16} className="text-green-600" />
+                        <span>Copied!</span>
+                      </span>
+                    ) : (
+                      'Copy Link'
+                    )}
                   </button>
                 </div>
               </div>

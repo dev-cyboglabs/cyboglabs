@@ -1,5 +1,16 @@
 // CYBOGLABS Mock Data
 
+import testriveImage from '../assets/testrive-project.svg';
+import wondsImage from '../assets/wonds-project.svg';
+import pixzeeImage from '../assets/pixzee-project.svg';
+import pixzeepodImage from '../assets/pixzeepod-project.svg';
+import spotaxisImage from '../assets/spotaxis-project.svg';
+import seabotImage from '../assets/seabot-project.svg';
+import matrivisImage from '../assets/matrivis-project.svg';
+import lockfeeImage from '../assets/lockfee-project.svg';
+import zeptrackImage from '../assets/zeptrack-project.svg';
+import spotytagsImage from '../assets/spotytags-project.svg';
+
 export const companyInfo = {
   name: "CYBOGLABS",
   tagline: "Technology & Life",
@@ -131,7 +142,7 @@ export const projects = [
     tagline: "Hospitality Automation Platform",
     description: "Hospitality-focused automation platform for intelligent tracking and billing of in-room consumables.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=60"
+    image: spotytagsImage
   },
   {
     id: 2,
@@ -139,7 +150,7 @@ export const projects = [
     tagline: "AI-Driven Apparel Platform",
     description: "An AI-driven apparel platform that blends personalization, automation, and digital intelligence into fashion retail.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=60"
+    image: pixzeeImage
   },
   {
     id: 3,
@@ -147,7 +158,7 @@ export const projects = [
     tagline: "AI-Powered Retail Assistant",
     description: "An AI-powered retail assistant designed to enhance customer interaction and in-store decision support.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&auto=format&fit=crop&q=60"
+    image: pixzeepodImage
   },
   {
     id: 4,
@@ -155,7 +166,7 @@ export const projects = [
     tagline: "Intelligent Marine Data Platform",
     description: "An intelligent marine data platform built to enable real-time monitoring and insights in maritime environments.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=60"
+    image: seabotImage
   },
   {
     id: 5,
@@ -163,7 +174,7 @@ export const projects = [
     tagline: "Digital Warehouse Intelligence",
     description: "A digital warehouse intelligence system designed for port and logistics operations to improve visibility and control.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=60"
+    image: matrivisImage
   },
   {
     id: 6,
@@ -171,7 +182,7 @@ export const projects = [
     tagline: "Virtual Driving Simulation",
     description: "A virtual driving and simulation platform created to evaluate, train, and validate vehicle interaction scenarios.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=60"
+    image: testriveImage
   },
   {
     id: 7,
@@ -179,7 +190,7 @@ export const projects = [
     tagline: "Automated Parking Compliance",
     description: "An automated parking compliance solution that enables digital payment and controlled clamp release with minimal manual intervention.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800&auto=format&fit=crop&q=60"
+    image:  lockfeeImage
   },
   {
     id: 8,
@@ -187,7 +198,7 @@ export const projects = [
     tagline: "Smart Parking Assistance",
     description: "A smart parking assistance platform focused on improving flow, compliance, and operational efficiency in managed parking environments.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?w=800&auto=format&fit=crop&q=60"
+    image: spotaxisImage
   },
   {
     id: 9,
@@ -195,7 +206,7 @@ export const projects = [
     tagline: "Pharmacy Automation Platform",
     description: "An automation platform designed to streamline pharmacy operations and inventory-driven workflows.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&auto=format&fit=crop&q=60"
+    image:  zeptrackImage
   },
   {
     id: 10,
@@ -203,7 +214,7 @@ export const projects = [
     tagline: "Digital Warranty Platform",
     description: "A digital warranty and after-sales platform that simplifies product ownership and service access for end users.",
     status: "Active",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop&q=60"
+    image: wondsImage
   }
 ];
 

@@ -56,7 +56,7 @@ const BlogPostPage = () => {
           </Link>
 
           {/* Category */}
-          <span className="inline-flex items-center px-3 py-1 bg-white/10 text-white text-sm font-medium rounded-full mb-6">
+          <span className="inline-flex ml-4 items-center px-3 py-1 bg-white/10 text-white text-sm font-medium rounded-full mb-6">
             <Tag size={14} className="mr-1.5" />
             {post.category}
           </span>
