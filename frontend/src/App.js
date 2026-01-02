@@ -11,6 +11,7 @@ import JobDetailPage from "./pages/JobDetailPage";
 import EventsNewsPage from "./pages/EventsNewsPage";
 import InternshipsPage from "./pages/InternshipsPage";
 import FAQPage from "./pages/FAQPage";
+import CookieConsent from "./components/CookieConsent";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/internships" element={<InternshipsPage />} />
           <Route path="/faq" element={<FAQPage />} />
         </Routes>
+        <CookieConsent />
       </BrowserRouter>
     </div>
   );
