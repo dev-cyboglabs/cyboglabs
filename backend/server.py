@@ -134,6 +134,20 @@ class EmailResponse(BaseModel):
     success: bool
     message: str
 
+class VisitorData(BaseModel):
+    userAgent: Optional[str] = None
+    language: Optional[str] = None
+    platform: Optional[str] = None
+    screenWidth: Optional[int] = None
+    screenHeight: Optional[int] = None
+    referrer: Optional[str] = None
+    path: Optional[str] = None
+    timestamp: Optional[str] = None
+
+class VisitorResponse(BaseModel):
+    success: bool
+    visitor_id: str
+
 # Store chat history in memory (for demo - in production use database)
 chat_sessions = {}
 
