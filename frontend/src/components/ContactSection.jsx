@@ -47,7 +47,7 @@ const ContactSection = () => {
             <span className="block text-neutral-400">Let&apos;s Talk</span>
           </h2>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            The FUTURE is calling! CYBOGLABS is answering!
+           Designed in the Lab. Deployed in the World
           </p>
         </div>
 
