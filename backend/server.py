@@ -279,6 +279,70 @@ async def get_contacts():
     contacts = await db.contacts.find({}, {"_id": 0}).to_list(1000)
     return contacts
 
+@api_router.post("/visitors", response_model=VisitorResponse)
+async def track_visitor(visitor: VisitorData):
+    """Track visitor data for analytics (only if user consented to cookies)"""
+    try:
+        visitor_doc = {
+            "id": str(uuid.uuid4()),
+            "user_agent": visitor.userAgent,
+            "language": visitor.language,
+            "platform": visitor.platform,
+            "screen_width": visitor.screenWidth,
+            "screen_height": visitor.screenHeight,
+            "referrer": visitor.referrer,
+            "path": visitor.path,
+            "visit_timestamp": visitor.timestamp or datetime.now(timezone.utc).isoformat(),
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }
+        
+        await db.visitors.insert_one(visitor_doc)
+        
+        return VisitorResponse(success=True, visitor_id=visitor_doc["id"])
+        
+    except Exception as e:
+        logger.error(f"Visitor tracking error: {str(e)}")
+        return VisitorResponse(success=False, visitor_id="")
+
+@api_router.get("/visitors/stats")
+async def get_visitor_stats():
+    """Get visitor statistics (admin endpoint)"""
+    try:
+        total_visitors = await db.visitors.count_documents({})
+        
+        # Get visitors from last 24 hours
+        from datetime import timedelta
+        yesterday = (datetime.now(timezone.utc) - timedelta(days=1)).isoformat()
+        recent_visitors = await db.visitors.count_documents({
+            "created_at": {"$gte": yesterday}
+        })
+        
+        # Get unique paths
+        pipeline = [
+            {"$group": {"_id": "$path", "count": {"$sum": 1}}},
+            {"$sort": {"count": -1}},
+            {"$limit": 10}
+        ]
+        top_pages = await db.visitors.aggregate(pipeline).to_list(10)
+        
+        # Get referrer stats
+        referrer_pipeline = [
+            {"$group": {"_id": "$referrer", "count": {"$sum": 1}}},
+            {"$sort": {"count": -1}},
+            {"$limit": 5}
+        ]
+        top_referrers = await db.visitors.aggregate(referrer_pipeline).to_list(5)
+        
+        return {
+            "total_visitors": total_visitors,
+            "visitors_last_24h": recent_visitors,
+            "top_pages": [{"page": p["_id"], "visits": p["count"]} for p in top_pages],
+            "top_referrers": [{"referrer": r["_id"], "count": r["count"]} for r in top_referrers]
+        }
+    except Exception as e:
+        logger.error(f"Visitor stats error: {str(e)}")
+        return {"error": str(e)}
+
 # Include the router in the main app
 app.include_router(api_router)
 
