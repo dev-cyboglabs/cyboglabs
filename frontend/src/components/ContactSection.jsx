@@ -58,10 +58,10 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 bg-white">
+    <section id="contact" className="py-8 md:py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center md:mb-16 mb-8">
           <span className="inline-block px-4 py-2 bg-neutral-100 text-neutral-600 text-sm font-medium rounded-full mb-6">
             Get in Touch
           </span>
@@ -69,7 +69,7 @@ const ContactSection = () => {
             Got a Project?
             <span className="block text-neutral-400">Let&apos;s Talk</span>
           </h2>
-          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-1xl md:text-xl text-neutral-600 max-w-2xl mx-auto">
            Designed in the Lab. Deployed in the World
           </p>
         </div>

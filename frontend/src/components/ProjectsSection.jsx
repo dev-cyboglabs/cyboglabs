@@ -15,10 +15,18 @@ const ProjectsSection = () => {
 
   const nextPage = () => {
     setCurrentPage((prev) => (prev + 1) % totalPages);
+    // Scroll to projects section after page change
+    setTimeout(() => {
+      document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   const prevPage = () => {
     setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+    // Scroll to projects section after page change
+    setTimeout(() => {
+      document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   const openProjectModal = (project) => {
@@ -32,13 +40,13 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="py-24 lg:py-32 bg-neutral-50">
+    <section id="projects" className="py-12 md:py-24 lg:py-32 bg-neutral-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6">
+        <div className="text-center mb-8 md:mb-16">
+          <div className="flex items-center justify-center gap-3 mb-4 md:mb-6">
             <div className="w-8 h-1 bg-gradient-to-r from-rose-400 to-amber-400 rounded-full" />
-            <span className="text-neutral-500 text-2xl uppercase tracking-widest font-medium">
+            <span className="text-neutral-500 text-1xl md:text-2xl uppercase tracking-widest font-medium">
               Our Work
             </span>
             <div className="w-8 h-1 bg-gradient-to-r from-amber-400 to-rose-400 rounded-full" />
@@ -55,23 +63,26 @@ const ProjectsSection = () => {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {currentProjects.map((project) => (
-           <div
-  key={project.id}
-  className="group relative bg-white overflow-hidden
-             border-2 border-gray-200
-             shadow-[4px_4px_0_#e2e2e280]
-             transition-all duration-300
-             hover:shadow-[4px_4px_0_#e2e2e260]
-             hover:translate-x-[2px] hover:translate-y-[2px]"
->
+            <div
+              key={project.id}
+              onClick={() => openProjectModal(project)}
+              className="group relative bg-white overflow-hidden
+                 border-2 border-gray-200
+                 shadow-[4px_4px_0_#e2e2e280]
+                 transition-all duration-300
+                 hover:shadow-[4px_4px_0_#e2e2e260]
+                 hover:translate-x-[2px] hover:translate-y-[2px]
+                 cursor-pointer"
+            >
 
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:rotate-1 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/20 via-transparent to-amber-500/20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-x-1 group-hover:translate-y-1" />
                 { /* black Overlay for project logo */}
                 {/* <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-neutral-900/20 to-transparent" /> */}  
                 
@@ -91,7 +102,10 @@ const ProjectsSection = () => {
                   {project.description}
                 </p>
                 <button 
-                  onClick={() => openProjectModal(project)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openProjectModal(project);
+                  }}
                   className="inline-flex items-center text-neutral-900 font-medium text-sm group/btn hover:text-rose-500 transition-colors duration-300"
                 >
                   <span>Learn More</span>
@@ -110,7 +124,7 @@ const ProjectsSection = () => {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-center mt-12 space-x-4">
+          <div className="flex items-center justify-center mt-6 md:mt-12 space-x-4">
             <button
               onClick={prevPage}
               className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center hover:bg-neutral-100 transition-colors duration-300"
@@ -122,7 +136,13 @@ const ProjectsSection = () => {
               {[...Array(totalPages)].map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentPage(index)}
+                  onClick={() => {
+                    setCurrentPage(index);
+                    // Scroll to projects section after page change
+                    setTimeout(() => {
+                      document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                  }}
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     currentPage === index
                       ? 'bg-neutral-900 w-8'
@@ -162,7 +182,7 @@ const ProjectsSection = () => {
             {/* Close Button */}
             <button
               onClick={closeProjectModal}
-              className="absolute top-4 right-4 z-10 w-6 h-6 h-5md:w-10 md:h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+              className="absolute top-4 right-4 z-10 w-6 h-6 md:w-10 md:h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
             >
               <X size={20} className="text-neutral-700" />
             </button>
@@ -183,7 +203,7 @@ const ProjectsSection = () => {
                 {/* Status Badge */}
                 <div className="absolute top-4 left-4">
                   <span 
-                    className="px-4 py-1.5 text-white text-sm font-medium rounded-full"
+                    className="px-2 md:px-3 py-1 text-white text-xs md:text-sm font-medium rounded-full"
                     style={{
                       background: 'linear-gradient(135deg, #f472b6 0%, #fbbf24 100%)',
                     }}

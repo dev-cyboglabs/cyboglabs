@@ -45,7 +45,7 @@ const EthicsComplianceSection = () => {
   ];
 
   return (
-    <section id="ethics" className="py-24 lg:py-32 bg-neutral-900 text-white">
+    <section id="ethics" className="py-12 md:py-24 lg:py-32 bg-neutral-900 text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -60,7 +60,7 @@ const EthicsComplianceSection = () => {
             Ethics &
             <span className="block text-neutral-500">Compliance</span>
           </h2>
-          <p className="text-lg md:text-xl text-neutral-400 max-w-3xl mx-auto">
+          <p className="text-1xl md:text-xl text-neutral-400 max-w-3xl mx-auto">
             At CYBOGLABS, we believe that groundbreaking innovation must be built on a foundation of 
             ethical practices and unwavering integrity. Our commitment to compliance isn't just about 
             following rules—it's about leading with responsibility.
@@ -143,11 +143,11 @@ const EthicsComplianceSection = () => {
 
         {/* Bottom Quote */}
         <div className="text-center mt-16">
-          <blockquote className="text-xl md:text-2xl text-neutral-300 italic max-w-3xl mx-auto">
+          <blockquote className="text-1xl md:text-2xl text-neutral-300 italic max-w-3xl mx-auto">
             "Innovation without ethics is incomplete. At CYBOGLABS, we engineer not just technology, 
             but trust."
           </blockquote>
-          <p className="mt-4 text-neutral-500 text-sm uppercase tracking-wider">
+          <p className="mt-4 text-neutral-500 text-xs md:text-sm uppercase tracking-wider">
             — CYBOGLABS Leadership
           </p>
         </div>

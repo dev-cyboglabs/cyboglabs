@@ -107,7 +107,7 @@ const FAQPage = () => {
                         <span className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
                           {faq.category}
                         </span>
-                        <h3 className="text-sm md:text-lg font-semibold text-neutral-900 mt-1">
+                        <h3 className="text-1xl md:text-lg font-semibold text-neutral-900 mt-1">
                           {faq.question}
                         </h3>
                       </div>
@@ -127,7 +127,7 @@ const FAQPage = () => {
                     expandedId === faq.id ? 'max-h-[500px]' : 'max-h-0'
                   }`}>
                     <div className="px-6 pb-6 pt-0 ml-14">
-                      <p className="text-neutral-600 text-xs md:text-sm leading-relaxed">
+                      <p className="text-neutral-600 text-sm md:text-sm leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>

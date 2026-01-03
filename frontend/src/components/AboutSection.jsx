@@ -15,17 +15,17 @@ const AboutSection = () => {
   return (
     <section id="about" className="bg-white">
       {/* Who We Are - Text Section */}
-      <div className="py-24 lg:py-32">
+      <div className="py-8 md:py-24 lg:py-32">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="flex items-center justify-center gap-3 mb-4 md:mb-8">
             <div className="w-8 h-1 bg-gradient-to-r from-rose-400 to-amber-400 rounded-full" />
-            <span className="text-neutral-500 text-2xl uppercase tracking-widest font-medium">
+            <span className="text-neutral-500 text-1xl md:text-2xl uppercase tracking-widest font-medium">
               Who We Are
             </span>
             <div className="w-8 h-1 bg-gradient-to-r from-amber-400 to-rose-400 rounded-full" />
           </div>
           
-          <p className="text-xl md:text-2xl text-neutral-700 leading-relaxed mb-8">
+          <p className="text-xl md:text-2xl text-neutral-700 leading-relaxedmb-4 md:mb-8">
             We are a{' '}
             <span className="bg-gradient-to-r from-rose-500 to-amber-500 bg-clip-text text-transparent font-semibold">
               future-driven R&D powerhouse
@@ -42,7 +42,7 @@ const AboutSection = () => {
           </p>
 
           {/* Vision & Mission - Enhanced Design */}
-         <div className="mt-16 grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+         <div className="md:mt-16 mt-8 grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
   {/* Vision Card */}
   <div className="relative bg-white border border-gray-900 shadow-[0.0em_0.0em_0_rgba(0,0,0,0.5)] hover:shadow-[0.4em_0.4em_0_rgba(0,0,0,0.6)] transition-all duration-300 transform hover:-translate-x-1 hover:-translate-y-1">
     <div className="px-6 py-4 border-b border-gray-900 font-bold text-xl text-gray-900">
@@ -77,13 +77,13 @@ const AboutSection = () => {
 
       {/* Specialties Section with Softer Gradient Background */}
       <div
-        className="py-24 lg:py-32"
+        className="py-12 md:py-24 lg:py-32"
         style={{
           background: 'linear-gradient(135deg, #f9a8d4 0%, #fcd34d 50%, #fdba74 100%)',
         }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center md:mb-16 mb-8">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
               Our Specialities
             </h2>

@@ -7,8 +7,15 @@ const BlogPreview = () => {
   // Show only first 3 posts
   const previewPosts = blogPosts.slice(0, 3);
 
+  const handleViewAllPosts = () => {
+    // Scroll to top immediately after a short delay to ensure navigation completes
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50);
+  };
+
   return (
-    <section className="py-24 lg:py-32 bg-neutral-900">
+    <section className="py-12 md:py-24 lg:py-32 bg-neutral-900">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
@@ -23,6 +30,7 @@ const BlogPreview = () => {
           </div>
           <Link
             to="/blog"
+            onClick={handleViewAllPosts}
             className="inline-flex items-center mt-6 md:mt-0 text-white font-medium group"
           >
             <span>View All Posts</span>

@@ -63,7 +63,7 @@ const Footer = () => {
       />
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-12 lg:gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-flex items-center space-x-2 group mb-6">
@@ -95,7 +95,7 @@ const Footer = () => {
 
           {/* Company Links */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-300 mb-6">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-300 mb-3 md:mb-6">
               Company
             </h4>
             <ul className="space-y-3">
@@ -119,7 +119,7 @@ const Footer = () => {
 
           {/* Services Links */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-300 mb-6">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-300 mb-3 md:mb-6">
               Services
             </h4>
             <ul className="space-y-3">
@@ -143,7 +143,7 @@ const Footer = () => {
 
           {/* Careers & Events Links */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-300 mb-6">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-300 mb-3 md:mb-6">
               Careers & Events
             </h4>
             <ul className="space-y-3">
@@ -167,7 +167,7 @@ const Footer = () => {
 
           {/* Legal Links */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-300 mb-6">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-300 mb-3 md:mb-6">
               Legal
             </h4>
             <ul className="space-y-3">

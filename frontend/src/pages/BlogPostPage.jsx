@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Calendar, User, ArrowLeft, ArrowRight, Tag, Share2 } from 'lucide-react';
+import { Calendar, User, ArrowLeft, ArrowRight, Tag, Share2, Facebook, Twitter, Linkedin, Link2, X } from 'lucide-react';
 import { blogPosts } from '../data/mockData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -9,6 +9,61 @@ import CybotChatbot from '../components/CybotChatbot';
 const BlogPostPage = () => {
   const { id } = useParams();
   const post = blogPosts.find((p) => p.id === parseInt(id));
+  const [showShareDropdown, setShowShareDropdown] = useState(false);
+  const [copiedText, setCopiedText] = useState(false);
+  const shareDropdownRef = useRef(null);
+
+  // Scroll to top when component mounts or when blog post changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (shareDropdownRef.current && !shareDropdownRef.current.contains(event.target)) {
+        setShowShareDropdown(false);
+      }
+    };
+
+    if (showShareDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showShareDropdown]);
+
+  // Share functionality
+  const shareArticle = async (platform) => {
+    const url = window.location.href;
+    const title = post.title;
+    
+    switch(platform) {
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'linkedin':
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'copy':
+        try {
+          await navigator.clipboard.writeText(url);
+          setCopiedText(true);
+          setTimeout(() => setCopiedText(false), 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+        break;
+    }
+    if (platform !== 'copy') {
+      setShowShareDropdown(false);
+    }
+  };
 
   // Get next and previous posts
   const currentIndex = blogPosts.findIndex((p) => p.id === parseInt(id));
@@ -95,15 +150,61 @@ const BlogPostPage = () => {
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <div className="prose prose-lg prose-neutral max-w-none">
             {post.content.split('\n\n').map((paragraph, index) => {
-              // Check if paragraph is a heading
-              if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+              // Check if paragraph is a heading (starts and ends with ** and no other text)
+              if (paragraph.startsWith('**') && paragraph.endsWith('**') && paragraph.split('**').filter(Boolean).length === 1) {
                 return (
                   <h2 key={index} className="text-2xl font-bold text-neutral-900 mt-10 mb-4">
                     {paragraph.replace(/\*\*/g, '')}
                   </h2>
                 );
               }
-              // Check if paragraph contains bullet points
+              
+              // Check if paragraph contains bold text and render it properly
+              if (paragraph.includes('**')) {
+                const parts = paragraph.split('**');
+                const elements = parts.map((part, i) => {
+                  if (i % 2 === 1) {
+                    // This is bold text (odd index)
+                    return <strong key={i} className="font-bold text-neutral-900">{part}</strong>;
+                  }
+                  return <span key={i}>{part}</span>;
+                });
+                
+                // Check if it's a bullet point list with bold text
+                if (paragraph.includes('\u2022')) {
+                  const items = paragraph.split('\u2022').filter(Boolean);
+                  return (
+                    <ul key={index} className="space-y-2 my-6">
+                      {items.map((item, i) => {
+                        // Process bold text within each list item
+                        const itemParts = item.split('**');
+                        const itemElements = itemParts.map((part, j) => {
+                          if (j % 2 === 1) {
+                            return <strong key={j} className="font-bold text-neutral-900">{part}</strong>;
+                          }
+                          return <span key={j}>{part}</span>;
+                        });
+                        
+                        return (
+                          <li key={i} className="flex items-start">
+                            <span className="w-2 h-2 bg-neutral-900 rounded-full mt-2 mr-3 flex-shrink-0" />
+                            <span className="text-neutral-700 leading-relaxed">{itemElements}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  );
+                }
+                
+                // Regular paragraph with bold text
+                return (
+                  <p key={index} className="text-neutral-700 leading-relaxed mb-6">
+                    {elements}
+                  </p>
+                );
+              }
+              
+              // Check if paragraph contains bullet points (without bold text)
               if (paragraph.includes('\u2022')) {
                 const items = paragraph.split('\u2022').filter(Boolean);
                 return (
@@ -117,6 +218,7 @@ const BlogPostPage = () => {
                   </ul>
                 );
               }
+              
               // Regular paragraph
               return (
                 <p key={index} className="text-neutral-700 leading-relaxed mb-6">
@@ -130,10 +232,64 @@ const BlogPostPage = () => {
           <div className="mt-12 pt-8 border-t border-neutral-200">
             <div className="flex items-center justify-between">
               <span className="text-neutral-600 font-medium">Share this article</span>
-              <div className="flex items-center space-x-4">
-                <button className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center hover:bg-neutral-200 transition-colors duration-300">
+              <div className="relative" ref={shareDropdownRef}>
+                <button 
+                  onClick={() => setShowShareDropdown(!showShareDropdown)}
+                  className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center hover:bg-neutral-200 transition-colors duration-300"
+                >
                   <Share2 size={18} className="text-neutral-600" />
                 </button>
+                
+                {/* Share Dropdown */}
+                {showShareDropdown && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-neutral-200 py-2 z-50">
+                    <button
+                      onClick={() => shareArticle('facebook')}
+                      className="w-full px-4 py-2 text-left text-sm text-neutral-700 hover:bg-neutral-50 flex items-center gap-3 transition-colors duration-200"
+                    >
+                      <div className="w-4 h-4 bg-blue-600 rounded-sm flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">f</span>
+                      </div>
+                      Share on Facebook
+                    </button>
+                    <button
+                      onClick={() => shareArticle('twitter')}
+                      className="w-full px-4 py-2 text-left text-sm text-neutral-700 hover:bg-neutral-50 flex items-center gap-3 transition-colors duration-200"
+                    >
+                      <div className="w-4 h-4 bg-black rounded-sm flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">𝕏</span>
+                      </div>
+                      Share on X
+                    </button>
+                    <button
+                      onClick={() => shareArticle('linkedin')}
+                      className="w-full px-4 py-2 text-left text-sm text-neutral-700 hover:bg-neutral-50 flex items-center gap-3 transition-colors duration-200"
+                    >
+                      <div className="w-4 h-4 bg-blue-700 rounded-sm flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">in</span>
+                      </div>
+                      Share on LinkedIn
+                    </button>
+                    <button
+                      onClick={() => shareArticle('copy')}
+                      className="w-full px-4 py-2 text-left text-sm text-neutral-700 hover:bg-neutral-50 flex items-center gap-3 transition-colors duration-200"
+                    >
+                      {copiedText ? (
+                        <>
+                          <div className="w-4 h-4 bg-green-600 rounded-sm flex items-center justify-center">
+                            <span className="text-white text-xs">✓</span>
+                          </div>
+                          <span className="text-green-600 font-medium">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Link2 size={16} className="text-neutral-600" />
+                          Copy Link
+                        </>
+                      )}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -143,7 +299,7 @@ const BlogPostPage = () => {
             {prevPost && (
               <Link
                 to={`/blog/${prevPost.id}`}
-                className="group p-6 bg-neutral-50 rounded-2xl hover:bg-neutral-100 transition-colors duration-300"
+                className="group p-3 md:p-6 bg-neutral-50 rounded-2xl hover:bg-neutral-100 transition-colors duration-300"
               >
                 <span className="text-sm text-neutral-500 flex items-center mb-2">
                   <ArrowLeft size={14} className="mr-1" />
@@ -157,7 +313,7 @@ const BlogPostPage = () => {
             {nextPost && (
               <Link
                 to={`/blog/${nextPost.id}`}
-                className="group p-6 bg-neutral-50 rounded-2xl hover:bg-neutral-100 transition-colors duration-300 text-right md:col-start-2"
+                className="group p-3 md:p-6 bg-neutral-50 rounded-2xl hover:bg-neutral-100 transition-colors duration-300 text-right md:col-start-2"
               >
                 <span className="text-sm text-neutral-500 flex items-center justify-end mb-2">
                   Next

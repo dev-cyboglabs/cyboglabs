@@ -101,21 +101,23 @@ const CookieConsent = () => {
           {/* Main Banner */}
           {!showDetails ? (
             <div className="p-6 md:p-8">
-              <div className="flex items-start gap-4">
-                <div 
-                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: 'linear-gradient(135deg, #f472b6 0%, #fbbf24 100%)',
-                  }}
-                >
-                  <Cookie className="w-6 h-6 text-white" />
-                </div>
-                
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-neutral-900 mb-2">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <div 
+                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: 'linear-gradient(135deg, #f472b6 0%, #fbbf24 100%)',
+                    }}
+                  >
+                    <Cookie className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-neutral-900">
                     We Value Your Privacy
                   </h3>
-                  <p className="text-neutral-600 text-sm leading-relaxed mb-4">
+                </div>
+                
+                <div className="space-y-4">
+                  <p className="text-neutral-600 text-sm leading-relaxed">
                     We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. 
                     By clicking "Accept All", you consent to our use of cookies. You can also customize your preferences 
                     or decline non-essential cookies.
@@ -149,7 +151,7 @@ const CookieConsent = () => {
                     </button>
                   </div>
                   
-                  <p className="text-xs text-neutral-500 mt-4">
+                  <p className="text-xs text-neutral-500">
                     By continuing to use this site, you agree to our{' '}
                     <Link to="/privacy" className="text-rose-500 hover:underline">Privacy Policy</Link>
                     {' '}and{' '}
