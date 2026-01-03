@@ -22,9 +22,8 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Create the main app without a prefix
-app = FastAPI()
-# Add this after line 26
+
+# Create the main app with optional root path
 root_path = os.environ.get('ROOT_PATH', '')
 app = FastAPI(root_path=root_path)
 # Create a router with the /api prefix
