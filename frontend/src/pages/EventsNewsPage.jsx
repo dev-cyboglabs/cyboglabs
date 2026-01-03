@@ -279,7 +279,7 @@ const EventsNewsPage = () => {
                     {selectedItem.type}
                   </span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white">
+                <h2 className="text-xl md:text-3xl font-bold text-white">
                   {selectedItem.title}
                 </h2>
               </div>

@@ -91,7 +91,7 @@ const ContactSection = () => {
             <div className="space-y-6">
               <a
                 href={`mailto:${companyInfo.email}`}
-                className="flex items-center space-x-4 p-4 bg-neutral-50 rounded-2xl hover:bg-neutral-100 transition-colors duration-300 group"
+                className="flex items-center space-x-4 p-2 md:p-4 bg-neutral-50 rounded-2xl hover:bg-neutral-100 transition-colors duration-300 group"
               >
                 <div className="w-12 h-12 bg-neutral-900 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Mail className="w-5 h-5 text-white" />
@@ -116,7 +116,7 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-neutral-50 p-8 lg:p-10 rounded-3xl">
+          <div className="bg-neutral-50 p-3 lg:p-10 rounded-3xl">
             {isSubmitted ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">

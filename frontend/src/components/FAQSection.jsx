@@ -110,7 +110,7 @@ const FAQSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="mailto:support@cyboglabs.com"
-              className="inline-flex items-center px-6 py-3 bg-neutral-900 text-white font-medium rounded-lg hover:bg-neutral-800 transition-colors duration-300"
+              className="inline-flex items-center md:px-6 md:py-3 px-8 py-3 bg-neutral-900 text-white font-medium rounded-lg hover:bg-neutral-800 transition-colors duration-300"
             >
               Contact Support
             </a>

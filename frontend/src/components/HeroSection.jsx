@@ -107,7 +107,7 @@ const HeroSection = () => {
                       element.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  className="px-8 py-3.5 border-2 border-neutral-900 text-neutral-900 text-base font-medium rounded-none hover:bg-neutral-900 hover:text-white transition-all duration-300 uppercase tracking-wider"
+                  className="px-12 py-2.5 md:px-8 md:py-3.5 border-2 border-neutral-900 text-neutral-900 text-base font-medium rounded-none hover:bg-neutral-900 hover:text-white transition-all duration-300 uppercase tracking-wider"
                 >
                   Our Works
                 </Link>
@@ -279,7 +279,7 @@ const HeroSection = () => {
                 </svg>
 
                 {/* Progress indicator below satellite */}
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center">
                   <div className="w-36 h-1 bg-neutral-200 rounded-full overflow-hidden">
                     <div 
                       className="h-full rounded-full transition-all duration-150"

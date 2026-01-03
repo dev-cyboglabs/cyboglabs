@@ -61,7 +61,7 @@ const BlogPostPage = () => {
             {post.category}
           </span>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
             {post.title}
           </h1>
 

@@ -448,7 +448,7 @@ const JobDetailPage = () => {
                         className="flex items-center justify-center w-full px-4 py-4 border-2 border-dashed border-neutral-300 rounded-lg cursor-pointer hover:border-rose-400 transition-colors duration-300"
                       >
                         <Upload size={20} className="mr-2 text-neutral-400" />
-                        <span className="text-neutral-600">
+                        <span className="text-neutral-600 text-xs">
                           {formData.resume ? formData.resume.name : 'Upload PDF, DOC, or DOCX (Max 5MB)'}
                         </span>
                       </label>

@@ -25,7 +25,7 @@ const FAQPage = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-neutral-50">
+      <section className="md:pt-32 pt-8 pb-2 md:pb-16 bg-neutral-50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="w-8 h-1 bg-gradient-to-r from-rose-400 to-amber-400 rounded-full" />
@@ -38,7 +38,7 @@ const FAQPage = () => {
             Frequently Asked
             <span className="block text-neutral-400">Questions</span>
           </h1>
-          <p className="text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto mb-10">
+          <p className="text-sm md:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto mb-10">
             Find answers to common questions about CYBOGLABS, our products, services, and career opportunities.
           </p>
           
@@ -57,15 +57,15 @@ const FAQPage = () => {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 lg:py-24">
+      <section className="py-6 md:py-16 lg:py-24">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           {/* Category Filter */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-6 md:mb-12">
             {categories.map(category => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                className={`px-2.5 py-1 md:px-5 md:py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
                   selectedCategory === category
                     ? 'bg-neutral-900 text-white'
                     : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
@@ -107,7 +107,7 @@ const FAQPage = () => {
                         <span className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
                           {faq.category}
                         </span>
-                        <h3 className="text-lg font-semibold text-neutral-900 mt-1">
+                        <h3 className="text-sm md:text-lg font-semibold text-neutral-900 mt-1">
                           {faq.question}
                         </h3>
                       </div>
@@ -127,7 +127,7 @@ const FAQPage = () => {
                     expandedId === faq.id ? 'max-h-[500px]' : 'max-h-0'
                   }`}>
                     <div className="px-6 pb-6 pt-0 ml-14">
-                      <p className="text-neutral-600 leading-relaxed">
+                      <p className="text-neutral-600 text-xs md:text-sm leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
@@ -146,7 +146,7 @@ const FAQPage = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center mt-16 p-8 bg-neutral-50 rounded-2xl">
+          <div className="text-center mt-16 md:p-8 p-4 bg-neutral-50 rounded-2xl">
             <h3 className="text-2xl font-bold text-neutral-900 mb-4">
               Still have questions?
             </h3>
@@ -156,13 +156,13 @@ const FAQPage = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="mailto:support@cyboglabs.com"
-                className="inline-flex items-center px-6 py-3 bg-neutral-900 text-white font-medium rounded-lg hover:bg-neutral-800 transition-colors duration-300"
+                className="inline-flex items-center md:px-6 md:py-3 px-8 py-3 bg-neutral-900 text-white font-medium rounded-lg hover:bg-neutral-800 transition-colors duration-300"
               >
                 Contact Support
               </a>
               <a
                 href="mailto:careers@cyboglabs.com"
-                className="inline-flex items-center px-6 py-3 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-100 transition-colors duration-300"
+                className="inline-flex items-center md:px-6 md:py-3 px-8 py-3 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-100 transition-colors duration-300"
               >
                 Career Inquiries
               </a>

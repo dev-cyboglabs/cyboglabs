@@ -26,6 +26,20 @@ const CybotChatbot = () => {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    // Prevent body scroll when chat is open
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const sendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
 
@@ -71,6 +85,13 @@ const CybotChatbot = () => {
 
   return (
     <>
+      {/* Backdrop */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
       {/* Chat Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -90,7 +111,7 @@ const CybotChatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-[380px] h-[550px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-neutral-200">
+        <div className="fixed bottom-24 right-6 left-4 md:left-auto md:right-6 z-50 w-auto h-[70vh] md:w-[380px] md:h-[550px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-neutral-200">
           {/* Header */}
           <div 
             className="p-4 text-white"
@@ -124,7 +145,7 @@ const CybotChatbot = () => {
                     </div>
                   )}
                   <div
-                    className={`max-w-[75%] px-3 py-2 rounded-2xl text-sm ${
+                    className={`max-w-[75%] md:max-w-[75%] px-3 py-2 rounded-2xl text-sm ${
                       msg.role === 'user'
                         ? 'bg-neutral-900 text-white rounded-br-sm'
                         : 'bg-neutral-100 text-neutral-700 rounded-bl-sm'
@@ -163,7 +184,7 @@ const CybotChatbot = () => {
                       onClick={() => {
                         setInputMessage(q);
                       }}
-                      className="text-xs px-2 py-1 bg-neutral-100 text-neutral-600 rounded-full hover:bg-neutral-200 transition-colors"
+                      className="text-xs px-2 py-1 bg-neutral-100 text-neutral-600 rounded-full hover:bg-neutral-200 transition-colors text-left"
                     >
                       {q}
                     </button>

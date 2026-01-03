@@ -162,7 +162,7 @@ const ProjectsSection = () => {
             {/* Close Button */}
             <button
               onClick={closeProjectModal}
-              className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+              className="absolute top-4 right-4 z-10 w-6 h-6 h-5md:w-10 md:h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
             >
               <X size={20} className="text-neutral-700" />
             </button>
@@ -195,12 +195,12 @@ const ProjectsSection = () => {
                 {/* Title Overlay */}
                 <div className="absolute bottom-6 left-6 right-6">
                   <p className="text-white/80 text-sm mb-2 uppercase tracking-wider">{selectedProject.name}</p>
-                  <h2 className="text-3xl md:text-4xl font-bold text-white">{selectedProject.tagline}</h2>
+                  <h2 className="text-1xl md:text-4xl font-bold text-white">{selectedProject.tagline}</h2>
                 </div>
               </div>
 
               {/* Project Details */}
-              <div className="p-6 md:p-8">
+              <div className="p-4 md:p-8">
                 {/* Overview */}
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold text-neutral-900 mb-3">Overview</h3>
