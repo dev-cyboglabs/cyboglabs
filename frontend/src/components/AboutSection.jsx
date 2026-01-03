@@ -50,7 +50,7 @@ const AboutSection = () => {
     </div>
     <div className="p-6 text-gray-800">
       <p>{companyInfo.vision}</p>
-      <div className="flex items-center gap-2 text-gray-900 text-sm font-medium mt-4">
+      <div className="flex items-center gap-2 text-gray-900 text-sm font-medium mt-10">
         <span className="w-2 h-2 bg-gray-900 rounded-full animate-pulse"></span>
         Future-Driven Innovation
       </div>

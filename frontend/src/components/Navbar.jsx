@@ -60,7 +60,7 @@ const Navbar = () => {
             to="/"
             className="flex items-center space-x-2 group"
           >
-            <img src={logoDark} alt="CYBOGLABS" className="h-12 lg:h-14" />
+            <img src={logoDark} alt="CYBOGLABS" className="h-12 lg:h-16" />
           </Link>
 
           {/* Desktop Navigation */}
